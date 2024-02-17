@@ -1,10 +1,7 @@
 from turtle import *
 
-elsa = Turtle()
-screen = Screen()
-
-elsa.forward(100)
-elsa.right(90)
+forward(100)
+right(90)
 
 # Lav en firkant
 

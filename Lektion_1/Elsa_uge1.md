@@ -30,11 +30,8 @@ Introducer Turtle
 ```python
 from turtle import *
 
-elsa = Turtle()
-screen = Screen()
-
-elsa.forward(100)
-elsa.right(90)
+forward(100)
+right(90)
 
 # Lav en firkant, ligesom i Hour of Code
 
@@ -63,12 +60,9 @@ Det samme kode i Python
 ```python
 from turtle import *
 
-elsa = Turtle()
-screen = Screen()
-
 for i in range(???):
-    elsa.forward(100)
-    elsa.right(90)
+    forward(100)
+    right(90)
 
 done()
 
@@ -94,14 +88,11 @@ Gør det selv færdigt
 ```python
 from turtle import *
 
-elsa = Turtle()
-screen = Screen()
-
 for i in range(???):
     for j in range(4):
-        elsa.forward(100)
-        elsa.right(90)
-    elsa.right(??)
+        forward(100)
+        right(90)
+    right(??)
 
 done()
 
@@ -124,14 +115,11 @@ Gør det selv færdigt
 ```python
 from turtle import *
 
-elsa = Turtle()
-screen = Screen()
-
 for i in range(???):
     for j in range(4):
-        elsa.forward(100)
-        elsa.right(90)
-    elsa.right(??)
+        forward(100)
+        right(90)
+    right(??)
 
 done()
 
@@ -158,12 +146,9 @@ Gør det selv færdigt
 ```python
 from turtle import *
 
-elsa = Turtle()
-screen = Screen()
-
-elsa.forward(100)
-elsa.back(100)
-elsa.right(90)
+forward(100)
+back(100)
+right(90)
 
 done()
 
@@ -173,9 +158,9 @@ HINT:
 
 ```python
 for i in range(4):
-    elsa.forward(100)
-    elsa.back(100)
-    elsa.right(90)
+    forward(100)
+    back(100)
+    right(90)
 ```
 
 ### Fortsæt Hour of Code with Elsa and Anna (Level 8)
@@ -199,12 +184,9 @@ Gør det selv færdigt
 ```python
 from turtle import *
 
-elsa = Turtle()
-screen = Screen()
-
-elsa.forward(100)
-elsa.back(100)
-elsa.right(???)
+forward(100)
+back(100)
+right(???)
 
 done()
 
@@ -214,7 +196,7 @@ HINT:
 
 ```python
 for i in range(10):
-    elsa.forward(100)
-    elsa.back(100)
-    elsa.right(???)
+    forward(100)
+    back(100)
+    right(???)
 ```
