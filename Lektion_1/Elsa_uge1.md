@@ -11,8 +11,16 @@ Sikre at det virker.
 Brug print til at skrive "Hallo Verden"
 
 ```python
+# Dette er en kommentar,
+# python er ligeglad med hvad jeg skriver her
+# du behøver ikke skriver hvad du ser af kommentarer
+
 print("Hallo Verden")
 ```
+
+### Save As...
+
+Gem ofte, gerne hver gang vi skifter til ny level, så valg, File og Save As, og navngiv filen "Elsa1.py" og skift tallet ud med hver level :)
 
 ### Start Hour of Code med Elsa and Anna
 
