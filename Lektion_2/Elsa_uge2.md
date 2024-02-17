@@ -5,6 +5,7 @@
 - Loops / løkker, `range`
 - Indentering / Indrykning
 - Brug af TAB og Shift-TAB
+- Gem ofte
 
 Evt. gennemgå koden fra Hour of Code - Elsa Level 8
 
