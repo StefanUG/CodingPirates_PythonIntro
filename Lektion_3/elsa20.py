@@ -1,4 +1,13 @@
 from turtle import *
+import random
+
+color_names = ["white", "sky blue", "light blue", "turquoise", "cyan", "slate blue", "purple1", "magenta", "aquamarine"]
+
+def nyfarve(): return random.choice(color_names)
+
+# Prøv at ændre baggrundsfarven
+screen = Screen()
+screen.bgcolor("RoyalBlue")
 
 def hopfrem(trin):
     penup()
@@ -18,6 +27,10 @@ def opret_snefnuggren():
         left(45)
     right(45)
 
+def snefnug_fraktal():
+    for i in range(8):
+        opret_snefnuggren()
+        right(45)
 
 def snefnug_firkant():
     for i in range(10):
@@ -35,8 +48,40 @@ def snefnug_parallelogram():
             right(120)
         right(36)
 
+def snefnug_streger():
+    for i in range(90):
+        color(nyfarve())
+        forward(100)
+        back(100)
+        right(4)
+
+
 # Tilføj de resterende
 
-snefnug_parallelogram() 
+# Ny funktion til at flytte turtle positionen
+def teleport(x, y):
+    penup()
+    goto(x, y)
+    pendown()
+
+speed(0)
+
+screensize(600, 600)
+
+teleport(-200,-200)
+color(nyfarve())
+snefnug_parallelogram()
+
+teleport(200,-200)
+color(nyfarve())
+snefnug_fraktal()
+
+teleport(-200,200)
+color(nyfarve())
+snefnug_firkant()
+
+teleport(200,200)
+snefnug_streger()
+
 
 done()

@@ -72,3 +72,25 @@ Mere arbejde med funktioner, f.eks. en snefnuggren. Fri lej til at arbejde med d
 - Funktioner (fortsat), f.eks. `opret_snefnuggren()`
 - opret flere funktioner, f.eks. `snefnug_firkat()`
 - fri leg til at arbejde med turtle
+
+
+## Fremtidige lektioner
+
+### Variabler
+
+CS Principles: Intro to Variables - Part 1:
+https://www.youtube.com/watch?v=G41G_PEWFjE
+
+CS Principles: Intro to Variables - Part 2
+https://www.youtube.com/watch?v=ijjVDBPwA1o
+
+Envelope Excercise
+https://code.org/curriculum/course4/4/Teacher.pdf
+
+Further inspiration
+https://code.org/curriculum/course1
+https://code.org/curriculum/course2
+https://code.org/curriculum/course3
+https://code.org/curriculum/course4
+
+
