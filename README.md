@@ -90,6 +90,7 @@ https://www.youtube.com/watch?v=G41G_PEWFjE
 CS Principles: Intro to Variables - Part 2
 https://www.youtube.com/watch?v=ijjVDBPwA1o
 
+#6 Python Playground: Variables & Data Types | Computer Programming & Coding for Kids & Beginners 
 https://www.youtube.com/watch?v=mQamOwiW3iM
 
 
