@@ -74,6 +74,12 @@ Mere arbejde med funktioner, f.eks. en snefnuggren. Fri lej til at arbejde med d
 - fri leg til at arbejde med turtle
 
 
+## Lektion 4
+
+
+
+
+
 ## Fremtidige lektioner
 
 ### Variabler
@@ -83,6 +89,9 @@ https://www.youtube.com/watch?v=G41G_PEWFjE
 
 CS Principles: Intro to Variables - Part 2
 https://www.youtube.com/watch?v=ijjVDBPwA1o
+
+https://www.youtube.com/watch?v=mQamOwiW3iM
+
 
 Envelope Excercise
 https://code.org/curriculum/course4/4/Teacher.pdf
