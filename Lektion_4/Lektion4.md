@@ -23,7 +23,16 @@ I opgaven er der et digt om eleverne på engelsk. Dette kunne være et forslag p
 
 
 
+## Ekstra materiale
 
+Course E / Lesson 7: Fancy Shapes using Nested Loops:
+
+https://studio.code.org/s/coursee-2022?section_id=5206287
+
+
+
+
+# Graveyard
 
 https://studio.code.org/s/course4
 

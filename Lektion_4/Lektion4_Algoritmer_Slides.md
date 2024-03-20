@@ -73,7 +73,4 @@ Hvem kan komme i tanker om nogle eksempler på algoritmer vi bruger i dagligdage
 [Link til skema](https://code.org/curriculum/course4/1/Assessment1-Tangrams.pdf)
 
 
----
-
-# Variabler
 
