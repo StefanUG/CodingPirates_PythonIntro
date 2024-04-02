@@ -30,17 +30,24 @@ Dette er planlagt til at være et 7 ugers kursus med ca. 2 timer hver uge. Med u
 
 | Uge | 1. time | 2. time |
 |:-:|--|--|
-| 0 | Workshop præsentation     | Tangram Algorithms (U)   |
-| 1 | HoC: Elsa og Anna         | + Intro til Turtle        |
-| 2 | Fortsæt Elsa og Anna      | + Intro til Loops Turtle  |
-| 3 | Fortsæt Elsa og Anna      | + Fortsæt med Turtle      |
-| 4 | Konvolut Øvelse (U)       | Code.org "Artist" øvelser |
-| 5 | Conditionals Cards (U)    | Guessing Game |
-| 6 | Functions Songwriting (U) | [Artist Functions (Course E)](https://studio.code.org/s/coursee-2022/lessons/11/levels/1?section_id=5206287) |
+| 0 | Workshop præsentation     | Tangram Algorithms (U)                  |
+| 1 | HoC: Elsa og Anna         | + Intro til Turtle                      |
+| 2 | Fortsæt Elsa og Anna      | + Intro til Loops Turtle                |
+| 3 | Fortsæt Elsa og Anna      | + Fortsæt med Turtle                    |
+| 4 | Konvolut Øvelse (U)       | Code.org "Artist" øvelser               |
+| 5 | Conditionals Cards (U)    | [If/Else with Bee (Course E)](https://studio.code.org/s/coursed-2023/lessons/14/levels/1)   |
+| 6 | Functions Songwriting (U) | [Artist Functions (Course E)](https://studio.code.org/s/coursee-2023/lessons/11/levels/1) |
 | 7 |    |  |
 
 
-Note: Vi har brug for ekstra materialer eller opgaver til Uge 4, til dem som er hurtige.
+
+### Functions with Bee:
+https://studio.code.org/s/course4/lessons/16/levels/3
+https://studio.code.org/s/coursef-2017/lessons/22/levels/5?no_redirect=true
+
+
+Slutprojekt: Guessing Game ?, eller som alternativ til uge 5 med conditionals...
+
 
 # Lektioner
 
@@ -164,6 +171,11 @@ https://code.org/curriculum/course3
 https://code.org/curriculum/course4
 
 
+## Install PyCharm, Git and Python
+
+
+
+
 ## Andet inspiration
 
 
@@ -180,3 +192,5 @@ https://code.org/curriculum/unplugged
 ### Colors:
 
 https://trinket.io/docs/colors
+
+
