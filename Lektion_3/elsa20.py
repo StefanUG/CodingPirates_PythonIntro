@@ -1,7 +1,7 @@
 from turtle import *
 import random
 
-color_names = ["white", "sky blue", "light blue", "turquoise", "cyan", "slate blue", "purple1", "magenta", "aquamarine"]
+color_names = ["white", "sky blue", "light blue", "turquoise", "cyan", "purple1", "magenta", "aquamarine"]
 
 def nyfarve(): return random.choice(color_names)
 
