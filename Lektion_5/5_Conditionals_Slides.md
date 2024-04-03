@@ -52,12 +52,22 @@ else:
 
 IDE betyder "Integrated Development Environment" og bruges til at programmere og lave apps og programmer i.
 
-Nu skal I installere Thonny
-
-- Gå til Thonny.org
-- Download
+- Søg efter "PyCharm"
+- Download "Community Edition"
 - Installer
-- Kopier filer
+
+---
+
+## Hent kode projektet
+
+- Gå til github.com/StefanUG
+- Under Repositories find "code-org-python"
+- Download release "2024-04-02" *enten zip (Win) eller tar.gz (Mac)*
+- Pak det ud
+- Åbn PyCharm, og vælg Open
+- Vælg den folder som blev pakket ud. Vigtigt! Den som indeholder `README.md` filen
+- Sig ja til at den opretter et Python Environment
+
 
 --- 
 
@@ -94,11 +104,12 @@ Men forward kan noget smart 😎
 ```python
 bee.forward(3) # Ryk frem 3 gange
 ```
+---
 
 # Nu er det jeres tur
 
 Nu skal I lave code.org: If/Else with Bee:
 
-- studio.code.org/s/coursed-2023
+- studio.code.org/s/coursed
 - find Lesson 14 og start
 
