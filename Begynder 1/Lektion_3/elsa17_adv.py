@@ -21,7 +21,7 @@ def opret_snefnuggren():
     right(45)
 
 
-#speed(0)
+speed(0)
 
 for i in range(3):
     opret_snefnuggren()

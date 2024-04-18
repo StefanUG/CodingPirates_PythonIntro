@@ -39,7 +39,7 @@ Dette er planlagt til at være et 7 ugers kursus med ca. 2 timer hver uge. Med u
 | 6 | Functions Songwriting (U) | [Artist Functions (Course E)](https://studio.code.org/s/coursee-2023/lessons/11/levels/1) |
 | 7 |    |  |
 
-
+Ide til lektion 7: Turtle Maze med if og loops
 
 ### Functions with Bee:
 https://studio.code.org/s/course4/lessons/16/levels/3
@@ -194,3 +194,25 @@ https://code.org/curriculum/unplugged
 https://trinket.io/docs/colors
 
 
+
+
+
+## Space Invaders Game
+
+https://github.com/coding-pirates-hillerod/aula-space-invaders/tree/main
+
+
+# Arcade
+
+## Platformer game with Arcade
+
+https://api.arcade.academy/en/latest/examples/platform_tutorial/step_17.html
+
+
+## Sol Defender
+
+https://github.com/DragonMoffon/Sol-Defender
+
+## Space Invaders
+
+https://github.com/pvcraven/space_invaders
