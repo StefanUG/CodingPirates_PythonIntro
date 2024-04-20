@@ -14,23 +14,27 @@
 
 # Step by step
 
-- Create Screen
-- Create Player
-- Make player move with events
-- Make the spaceship shoot with one bullet
-- Prevent player from exiting the screen (or appearing in the other side)
-- Add asteroids
-- shoot the asteroids
-- game over if hitting the asteroids
-- add score and display it
-- Make the asteroids move
-- Make the spaceship shoot more than one bullet
-- Respawn asteroids
+- 1 Create Screen
+- 1 Create Player
+- 2-3 Make player move with events
+- 4 Make the spaceship shoot with one bullet
+- 5 Prevent player from exiting the screen (or appearing in the other side)
+- 6 Add a lifetime to the bullets, and make them move across screens too
+- 7 Add more bullets, but oops, they are too rapidly firing
+- 8 Let's add a Player class and a cooldown/reload time
+- 9 Add asteroids
+- 10 shoot the asteroids
+- 11 why are the bullets not passing on?
+- 12 game over if hitting the asteroids
+- 13 add score and display it
+- 14 Make the asteroids move
+- 15 Respawn asteroids
+- 16 add health and a grace period after being hit
+- 17 add a grace period after being hit
 
 More advanced
 - add acceleration to the movement, and keep the ship moving
 - break down asteroids when they are shot
-- add health and a grace period after being hit
 - make custom shapes for ship and a moving/accelerating ship
 - make custom shapes for asteroids
 - make random shapes for asteroids

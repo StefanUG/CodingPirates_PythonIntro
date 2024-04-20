@@ -1,7 +1,8 @@
 import turtle
+import random
 
 """
-Make the spaceship shoot one bullet
+Let's add some Asteroids
 """
 
 #
@@ -16,6 +17,10 @@ GAME_TICK = 20 # miliseconds, lower means faster game
 ROTATE_SPEED = 5 # turn 5 degrees each tick
 PLAYER_SPEED = 10 # Pixels to move player each tick
 BULLET_SPEED = PLAYER_SPEED * 2 # Double of player speed
+BULLET_LIFETIME = 75  # live for 200 game ticks
+MAX_BULLETS = 10
+RELOAD_TIME = 5  # ticks between reload
+MAX_ASTEROIDS = 10
 
 HALF_WIDTH = int(SCREEN_WIDTH / 2)
 HALF_HEIGHT = int(SCREEN_HEIGHT / 2)
@@ -35,21 +40,58 @@ class Bullet(turtle.Turtle):
         self.penup()
         self.hideturtle()
         self.active = False
+        self.ttl = BULLET_LIFETIME
 
     def fire(self, start):
         self.active = True
+        self.ttl = BULLET_LIFETIME
         self.setposition(start.xcor(), start.ycor())  # Move the bullet to the player
         self.setheading(start.heading())  # set the same heading as the player
         self.showturtle()  # show the bullet
 
     def move(self):
         self.forward(BULLET_SPEED)
+        move_if_out_of_bounds(self)
 
-        # Border checking for bullet
-        # abs turns any number to a positive number
-        if abs(self.xcor()) > HALF_WIDTH or abs(self.ycor()) > HALF_HEIGHT:
+        self.ttl -= 1
+        if self.ttl < 0:
             self.hideturtle()
             self.active = False
+
+
+class Player(turtle.Turtle):
+
+    def __init__(self):
+        super().__init__()
+        self.shape("triangle")
+        self.color("light grey", BG_COLOR)
+        self.shapesize(stretch_wid=0.75, stretch_len=1.5)  # Stretch the triangle to be pointy
+        self.penup()  # to not draw lines
+
+        self.fire_cooldown = 0
+
+    def shoot(self, inactive_bullet):
+        if self.fire_cooldown == 0:
+            inactive_bullet.fire(player)
+            self.fire_cooldown = RELOAD_TIME
+
+    def cooldown(self):
+        if self.fire_cooldown > 0:
+            self.fire_cooldown -= 1
+
+
+class Asteroid(turtle.Turtle):
+
+    def __init__(self):
+        super().__init__()
+        self.shape("circle")
+        self.shapesize(stretch_wid=3, stretch_len=3)
+        self.color("white", BG_COLOR)
+        self.penup()
+        x = random.randint(-HALF_WIDTH, HALF_WIDTH)
+        y = random.randint(-HALF_HEIGHT, HALF_HEIGHT)
+        self.goto(x, y)
+
 
 
 #
@@ -64,14 +106,18 @@ screen.tracer(0) # disable the built in movement animation of turtle
 
 
 # Make a turtle for the player
-player = turtle.Turtle()
-player.shape("triangle")
-player.color("light grey", BG_COLOR)
-player.shapesize(stretch_wid=0.75, stretch_len=1.5) # Stretch the triangle to be pointy
-player.penup() # to not draw lines
+player = Player()
 
-# Create a turtle for the bullet
-bullet = Bullet()
+# Create bullets
+bullets = []
+for i in range(MAX_BULLETS):
+    bullets.append(Bullet())
+
+# Create asteroids
+asteroids = []
+for i in range(MAX_ASTEROIDS):
+    asteroids.append(Asteroid())
+
 
 #
 #  EVENTS
@@ -124,6 +170,22 @@ screen.onkeyrelease(release_fire, "space")
 #  BEHAVIOURS
 #
 
+
+def move_if_out_of_bounds(t: turtle.Turtle):
+    # Border checking for bullet
+    x = t.xcor()
+    y = t.ycor()
+    # abs turns any number to a positive number
+    if x > HALF_WIDTH:  # too far right
+        t.goto(-HALF_WIDTH, y)
+    elif x < -HALF_WIDTH:  # too far left
+        t.goto(HALF_WIDTH, y)
+    if y > HALF_HEIGHT:  # too far up
+        t.goto(x, -HALF_HEIGHT)
+    elif y < -HALF_HEIGHT:  # too far down
+        t.goto(x, HALF_HEIGHT)
+
+
 def move_spaceship():
     if keys_pressed["Left"]:
         player.left(ROTATE_SPEED)
@@ -131,13 +193,20 @@ def move_spaceship():
         player.right(ROTATE_SPEED)
     if keys_pressed["Up"]:
         player.forward(PLAYER_SPEED)
+        move_if_out_of_bounds(player)
+
     
 def move_bullets():
-    if keys_pressed["space"] and not bullet.active:
-        bullet.fire(player)
+    player.cooldown()
+    inactive_bullet = None
+    for bullet in bullets:
+        if not bullet.active:
+            inactive_bullet = bullet
+        elif bullet.active:
+            bullet.move()
 
-    if bullet.active:
-        bullet.move()
+    if keys_pressed["space"] and inactive_bullet:
+        player.shoot(inactive_bullet)
 
 
 #

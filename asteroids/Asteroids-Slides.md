@@ -11,12 +11,17 @@ med Turtle Graphics
 
 ---
 
-# Lad installere et IDE
+# Lad os installere et IDE
 
 > Integrated Development Environment
 
 ## PyCharm Community Edition: 
 - https://www.jetbrains.com/pycharm/download/
+
+### Og gør jer klar til at kode
+
+- Hav et projekt klar i dit IDE
+- Lav en ny fil, f.eks. `asteroids.py`
 
 ---
 
@@ -24,13 +29,6 @@ med Turtle Graphics
 # koordinat system
 
 ![bg contain](slide-resources/coordinate-system.svg)
-
----
-
-# Lad os komme i gang med at kode
-
-- Hav et projekt klar i dit IDE
-- Lav en ny fil, f.eks. `asteroids.py`
 
 ---
 

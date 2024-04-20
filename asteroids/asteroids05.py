@@ -1,7 +1,7 @@
 import turtle
 
 """
-Make the spaceship shoot one bullet
+Prevent spaceship from exiting the screen
 """
 
 #
@@ -124,6 +124,22 @@ screen.onkeyrelease(release_fire, "space")
 #  BEHAVIOURS
 #
 
+
+def move_if_out_of_bounds(t: turtle.Turtle):
+    # Border checking for bullet
+    x = t.xcor()
+    y = t.ycor()
+    # abs turns any number to a positive number
+    if x > HALF_WIDTH:  # too far right
+        t.goto(-HALF_WIDTH, y)
+    elif x < -HALF_WIDTH:  # too far left
+        t.goto(HALF_WIDTH, y)
+    if y > HALF_HEIGHT:  # too far up
+        t.goto(x, -HALF_HEIGHT)
+    elif y < -HALF_HEIGHT:  # too far down
+        t.goto(x, HALF_HEIGHT)
+
+
 def move_spaceship():
     if keys_pressed["Left"]:
         player.left(ROTATE_SPEED)
@@ -131,6 +147,8 @@ def move_spaceship():
         player.right(ROTATE_SPEED)
     if keys_pressed["Up"]:
         player.forward(PLAYER_SPEED)
+        move_if_out_of_bounds(player)
+
     
 def move_bullets():
     if keys_pressed["space"] and not bullet.active:
