@@ -12,6 +12,8 @@ SCREEN_WIDTH = 1200
 SCREEN_HEIGHT = 800
 BG_COLOR = "black"
 
+ROTATE_SPEED = 5  # turn 5 degrees each tick
+PLAYER_SPEED = 10  # Pixels to move player each tick
 
 #
 #  GAME SETUP
@@ -38,15 +40,15 @@ player.penup() # to not draw lines
 
 # Make the spaceship move
 def press_left():
-    player.left(5)
+    player.left(ROTATE_SPEED)
     screen.update()
 
 def press_right():
-    player.right(5)
+    player.right(ROTATE_SPEED)
     screen.update()
 
 def press_forward():
-    player.forward(10)
+    player.forward(PLAYER_SPEED)
     screen.update()
 
 
