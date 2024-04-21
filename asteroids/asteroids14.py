@@ -2,7 +2,7 @@ import turtle
 import random
 
 """
-Let's keep a score
+Make the asteroids move
 """
 
 #
