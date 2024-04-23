@@ -25,7 +25,8 @@ ASTEROID_SPEED_MIN = 1
 ASTEROID_SPEED_MAX = 5
 ASTEROID_RESPAWN_AFTER = 150  # respawn after number of game ticks
 
-SCORE_FONT = ("Courier New", 16, "normal")
+FONT_FAMILY = "Courier New"
+SCORE_FONT = (FONT_FAMILY, 16, "normal")
 
 HALF_WIDTH = int(SCREEN_WIDTH / 2)
 HALF_HEIGHT = int(SCREEN_HEIGHT / 2)
@@ -137,7 +138,7 @@ pen.write("SCORE: ", font=SCORE_FONT)
 
 score_pen = turtle.Turtle(visible=False)
 score_pen.color("white")
-pen.penup()
+score_pen.penup()
 score_pen.goto(-HALF_WIDTH + 90, HALF_HEIGHT - 30)
 
 # Create bullets
@@ -291,7 +292,7 @@ def update():
         screen.ontimer(update, GAME_TICK) # this calls the game loop again for the next tick
     else:
         pen.goto(0, 0)
-        pen.write("GAME OVER", align="center", font=("Courier New", 68, "normal"))
+        pen.write("GAME OVER", align="center", font=(FONT_FAMILY, 68, "normal"))
 
 
 #

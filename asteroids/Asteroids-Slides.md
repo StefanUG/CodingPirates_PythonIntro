@@ -2,6 +2,15 @@
 theme: gaia
 marp: true
 ---
+<style>
+.container{
+    display: flex;
+}
+.col{
+    flex: 1;
+}
+</style>
+<!-- need to enable HTML in the MARP extension -->
 
 # Python Game Development
 
@@ -32,7 +41,70 @@ med Turtle Graphics
 
 ---
 
-# Vi starter med at importere turtle
+# Lad os holde orden i tingene
+
+<div class="container">
+
+<div class="col">
+Opdeling af koden
+
+1. Imports øverst
+2. Definere konstanter
+3. (Classes) - kommer senere
+4. Game setup
+5. Events
+6. Behaviours
+7. (Game Loop)
+8. Start the game
+</div>
+
+<div class="col">
+
+```python
+import turtle
+# CONSTANTS, e.g.
+SCREEN_WIDTH = 1200  # en konstant
+# CLASSES, e.g.
+class Asteroid(turtle.Turtle): 
+# GAME SETUP, e.g.
+player = turtle.Turtle()
+# EVENTS, e.g.
+screen.onkey(press_up, "Up")
+# BEHAVIOURS, e.g.
+def move_spaceship():
+# GAME LOOP, e.g.
+def update():
+# START THE GAME, e.g.
+screen.mainloop()
+```
+
+</div>
+
+</div>
+
+
+---
+
+# Kommentarer
+
+De er der for at hjælpe jer. I behøver ikke skrive dem.
+
+```python
+#
+#  GAME SETUP
+#
+
+player.penup() # to not draw lines
+```
+
+Hvis I gør, så skriv **hvorfor** og ikke **hvad**.
+Jeg skriver måske lidt **hvad**, men for at hjælpe jer til bedre at forstå koden til at starte med.
+
+---
+
+# Lad os komme i gang
+
+## Start med at importere turtle
 
 så vi kan bruge den i vores kode
 
@@ -85,12 +157,10 @@ Det laver vinduet, sætter størrelsen og baggrundsfarven på det, og slår den 
 player = turtle.Turtle()
 player.shape("triangle")
 player.color("light grey", BG_COLOR)
-player.shapesize(stretch_wid=0.75, stretch_len=1.5) # Stretch the triangle to be pointy
 player.penup() # to not draw lines
 ```
 
 - Her bruger vi en `triangle` shape til vores turtle, sætter den til lysegrå med sort fyld.
-- Derefter strækker vi den i længden så den ligner mere et rumskib
 - Til sidst løfter vi pen'en, så den ikke tegner streger efter sig.
 
 
@@ -117,6 +187,74 @@ screen.mainloop() # don't close the window
 # _     Ser det sådan ud?
 
 ![bg fit](slide-resources/asteroids-01-screenshot.png)
+
+---
+
+# Samlet set
+
+<div class="container">
+
+<div class="col">
+
+```python
+import turtle
+
+#
+#  CONSTANTS
+#
+SCREEN_WIDTH = 1200
+SCREEN_HEIGHT = 800
+BG_COLOR = "black"
+
+#
+#  GAME SETUP
+#
+screen = turtle.Screen()
+screen.setup(SCREEN_WIDTH, SCREEN_HEIGHT)
+screen.bgcolor(BG_COLOR)
+screen.tracer(0)  # disable animation
+
+```
+
+</div>
+
+<div class="col">
+
+```python
+# Make a turtle for the player
+player = turtle.Turtle()
+player.shape("triangle")
+player.color("light grey", BG_COLOR)
+player.penup()  # to not draw lines
+
+
+#
+#  START THE GAME
+#
+
+screen.update()
+screen.mainloop()
+
+
+
+```
+
+</div>
+
+</div>
+
+---
+
+# Skal vi have rumbkibet til at se lidt bedre ud ?
+
+```python
+# Stretch the triangle to be pointy
+player.shapesize(stretch_wid=0.75, stretch_len=1.5)
+```
+
+- Her strækker vi den i længden så den ligner mere et rumskib
+
+Hvor skal vi sætte den kode ind?
 
 ---
 
@@ -165,3 +303,5 @@ Kan I selv lave
 # Prøv spillet nu
 
 ### Kan I flytte rumskibet?
+
+

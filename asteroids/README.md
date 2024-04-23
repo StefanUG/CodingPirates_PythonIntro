@@ -31,18 +31,35 @@
 - 15 Respawn asteroids
 - 16 add health and a grace period after being hit
 - 17 add a grace period after being hit
+- 18 flash during grace period
+- 19 move like in space
+- 20 add thrust animation
 
 More advanced
-- add acceleration to the movement, and keep the ship moving
 - break down asteroids when they are shot
-- make custom shapes for ship and a moving/accelerating ship
+- make the ship follow the mouse pointer and click to shoot
+- make explosion animations
 - make custom shapes for asteroids
 - make random shapes for asteroids
 - make the asteroids rotate as they move
-- make the ship follow the mouse pointer and click to shoot
-- make explosion animations
 
 
+## Acceleration
+
+Track vs. Heading
+
+![track vs heading](https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fprod-cms.scouts.org.uk%2Fmedia%2F10408%2Ftrackcourseheading.png%3Fwidth%3D1800&f=1&nofb=1&ipt=961372850de22f7162679f4f5ba38d1e8d03468da51617a97e30d140af6b70be&ipo=images)
+
+```python
+def thrust():
+    if s1.alive:
+        s1.thrustlife = 0.5
+        thrust_direction = s1.direction + math.pi/2
+        s1.speedx, s1.speedy = s1.speedx + 5 * math.cos(thrust_direction), s1.speedy + 5 * math.sin(thrust_direction)
+        speed = (s1.speedx ** 2 + s1.speedy ** 2) ** 0.5
+        if speed > Spaceship.maxspeed:
+            s1.speedx, s1.speedy = (s1.speedx * Spaceship.maxspeed) / speed, (s1.speedy * Spaceship.maxspeed)/speed
+```
 
 ## Inspiration
 

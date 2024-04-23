@@ -28,7 +28,8 @@ ASTEROID_SPEED_MIN = 1
 ASTEROID_SPEED_MAX = 5
 ASTEROID_RESPAWN_AFTER = 150  # respawn after number of game ticks
 
-SCORE_FONT = ("Courier New", 16, "normal")
+FONT_FAMILY = "Courier New"
+SCORE_FONT = (FONT_FAMILY, 16, "normal")
 
 HALF_WIDTH = int(SCREEN_WIDTH / 2)
 HALF_HEIGHT = int(SCREEN_HEIGHT / 2)
@@ -253,12 +254,14 @@ def check_collission(with_turtle):
     return None
 
 
-def move_spaceship():
+def animate_spaceship():
     if player.is_invincible():
-        player.color("red", "black")
+        player.color("red", BG_COLOR)
     else:
-        player.color("light grey", "black")
+        player.color("light grey", BG_COLOR)
 
+
+def move_spaceship():
     if keys_pressed["Left"]:
         player.left(ROTATE_SPEED)
     if keys_pressed["Right"]:
@@ -320,6 +323,7 @@ def draw_health():
 
 def update():
     move_spaceship()
+    animate_spaceship()
     move_bullets()
     move_asteroids()
 
@@ -328,7 +332,7 @@ def update():
         screen.ontimer(update, GAME_TICK) # this calls the game loop again for the next tick
     else:
         pen.goto(0, 0)
-        pen.write("GAME OVER", align="center", font=("Courier New", 68, "normal"))
+        pen.write("GAME OVER", align="center", font=(FONT_FAMILY, 68, "normal"))
 
 
 #

@@ -1,8 +1,10 @@
 import turtle
 import random
+import time
+import math
 
 """
-Game over if hitting an asteroid
+Movement like in space
 """
 
 #
@@ -15,14 +17,21 @@ BG_COLOR = "black"
 
 GAME_TICK = 20 # miliseconds, lower means faster game
 ROTATE_SPEED = 5 # turn 5 degrees each tick
-PLAYER_SPEED = 10 # Pixels to move player each tick
-BULLET_SPEED = PLAYER_SPEED * 2 # Double of player speed
+PLAYER_MAX_SPEED = 10  # Pixels to move player each tick
+PLAYER_THRUST = 0.1  # increase in speed per tick
+PLAYER_START_HEALTH = 3
+PLAYER_GRACE_PERIOD = 3 # seconds
+BULLET_SPEED = PLAYER_MAX_SPEED * 2 # Double of player speed
 BULLET_LIFETIME = 75  # live for 200 game ticks
 MAX_BULLETS = 10
 RELOAD_TIME = 5  # ticks between reload
 MAX_ASTEROIDS = 10
+ASTEROID_SPEED_MIN = 1
+ASTEROID_SPEED_MAX = 5
+ASTEROID_RESPAWN_AFTER = 150  # respawn after number of game ticks
 
 FONT_FAMILY = "Courier New"
+SCORE_FONT = (FONT_FAMILY, 16, "normal")
 
 HALF_WIDTH = int(SCREEN_WIDTH / 2)
 HALF_HEIGHT = int(SCREEN_HEIGHT / 2)
@@ -72,6 +81,12 @@ class Player(turtle.Turtle):
 
         self.fire_cooldown = 0
         self.alive = True
+        self.score = 0
+        self.health = PLAYER_START_HEALTH
+        self.last_hit = 0.0
+
+        self.speedx = 0
+        self.speedy = 0
 
     def shoot(self, inactive_bullet):
         if self.fire_cooldown == 0:
@@ -81,6 +96,34 @@ class Player(turtle.Turtle):
     def cooldown(self):
         if self.fire_cooldown > 0:
             self.fire_cooldown -= 1
+
+    def is_invincible(self):
+        # a chance to talk about return values
+        return self.last_hit + PLAYER_GRACE_PERIOD > time.time()
+
+    def hit(self):
+        if not self.is_invincible():
+            self.health -= 1
+            self.last_hit = time.time()
+            draw_health()
+
+        if self.health == 0:
+            self.alive = False
+
+    def thrust(self):
+        track = math.radians(self.heading())
+        self.speedx += PLAYER_THRUST * math.cos(track)
+        self.speedy += PLAYER_THRUST * math.sin(track)
+        speed = (self.speedx ** 2 + self.speedy ** 2) ** 0.5
+        if speed > PLAYER_MAX_SPEED:
+            self.speedx = (self.speedx * PLAYER_MAX_SPEED) / speed
+            self.speedy = (self.speedy * PLAYER_MAX_SPEED) / speed
+
+    def move(self):
+        x, y = self.pos()
+        x += self.speedx
+        y += self.speedy
+        self.goto(x, y)
 
 
 class Asteroid(turtle.Turtle):
@@ -96,7 +139,18 @@ class Asteroid(turtle.Turtle):
         self.goto(x, y)
 
         self.radius = 30
+        self.speed = 0
+        self.respawn_in = 0
+        self.reset()
 
+    def reset(self):
+        self.setheading(random.randint(0, 360))
+        self.speed = random.randint(ASTEROID_SPEED_MIN, ASTEROID_SPEED_MAX)
+        self.showturtle()
+
+    def hit(self):
+        self.hideturtle()
+        self.respawn_in = ASTEROID_RESPAWN_AFTER
 
 
 #
@@ -116,6 +170,21 @@ player = Player()
 # A pen to write stuff to the screen
 pen = turtle.Turtle(visible=False)
 pen.color("white")
+pen.penup()
+pen.goto(-HALF_WIDTH + 20, HALF_HEIGHT - 30)
+pen.write("SCORE: ", font=SCORE_FONT)
+pen.goto(-HALF_WIDTH + 20, HALF_HEIGHT - 60)
+pen.write("HEALTH: ", font=SCORE_FONT)
+
+score_pen = turtle.Turtle(visible=False)
+score_pen.color("white")
+score_pen.penup()
+score_pen.goto(-HALF_WIDTH + 90, HALF_HEIGHT - 30)
+
+health_pen = turtle.Turtle(visible=False)
+health_pen.color("white")
+health_pen.penup()
+health_pen.goto(-HALF_WIDTH + 90, HALF_HEIGHT - 60)
 
 # Create bullets
 bullets = []
@@ -203,18 +272,32 @@ def check_collission(with_turtle):
     return None
 
 
+def animate_spaceship():
+    if player.is_invincible():
+        scaled = int(time.time() * 10)
+        is_invisible = scaled % 2
+        if is_invisible:
+            player.hideturtle()
+        else:
+            player.showturtle()
+    else:
+        player.showturtle()
+
+
 def move_spaceship():
     if keys_pressed["Left"]:
         player.left(ROTATE_SPEED)
     if keys_pressed["Right"]:
         player.right(ROTATE_SPEED)
     if keys_pressed["Up"]:
-        player.forward(PLAYER_SPEED)
-        move_if_out_of_bounds(player)
-        if check_collission(player):
-            player.alive = False
+        player.thrust()
 
-    
+    player.move()
+    move_if_out_of_bounds(player)
+    if check_collission(player):
+        player.hit()
+
+
 def move_bullets():
     player.cooldown()
     inactive_bullet = None
@@ -225,12 +308,38 @@ def move_bullets():
             bullet.move()
             hit_asteroid = check_collission(bullet)
             if hit_asteroid:
-                hit_asteroid.hideturtle()
+                hit_asteroid.hit()
                 bullet.hideturtle()
                 bullet.active = False
+                player.score += 1
+                draw_score()
 
     if keys_pressed["space"] and inactive_bullet:
         player.shoot(inactive_bullet)
+
+
+def move_asteroids():
+    for asteroid in asteroids:
+        if asteroid.isvisible():
+            asteroid.forward(asteroid.speed)
+            move_if_out_of_bounds(asteroid) # let the kids figure this one out for a while
+            # also this one:
+            if abs(player.distance(asteroid)) < asteroid.radius:
+                player.hit()
+        else:
+            asteroid.respawn_in -= 1
+            if asteroid.respawn_in == 0:
+                asteroid.reset()
+
+
+def draw_score():
+    score_pen.clear()
+    score_pen.write(player.score, font=SCORE_FONT)
+
+
+def draw_health():
+    health_pen.clear()
+    health_pen.write(player.health, font=SCORE_FONT)
 
 
 #
@@ -239,12 +348,15 @@ def move_bullets():
 
 def update():
     move_spaceship()
+    animate_spaceship()
     move_bullets()
+    move_asteroids()
 
     screen.update()
     if player.alive:
         screen.ontimer(update, GAME_TICK) # this calls the game loop again for the next tick
     else:
+        pen.goto(0, 0)
         pen.write("GAME OVER", align="center", font=(FONT_FAMILY, 68, "normal"))
 
 
@@ -252,5 +364,7 @@ def update():
 #  START THE GAME
 #
 
+draw_score()
+draw_health()
 update() # call the game loop to start the game
 screen.mainloop() # don't close the window
