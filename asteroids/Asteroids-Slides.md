@@ -291,6 +291,7 @@ def press_left():
     player.left(ROTATE_SPEED)
     screen.update()
 
+screen.listen()
 screen.onkey(press_left, "Left")
 ```
 

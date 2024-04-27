@@ -12,7 +12,7 @@ SCREEN_WIDTH = 1200
 SCREEN_HEIGHT = 800
 BG_COLOR = "black"
 
-GAME_TICK = 20 # milliseconds, lower means faster game
+GAME_TICK = 20  # milliseconds, lower means faster game
 ROTATE_SPEED = 5  # turn 5 degrees each tick
 PLAYER_SPEED = 10  # Pixels to move player each tick
 
@@ -76,9 +76,11 @@ screen.listen()
 screen.onkeypress(press_left, "Left")
 screen.onkeypress(press_right, "Right")
 screen.onkeypress(press_forward, "Up")
+screen.onkeypress(press_fire, "space")
 screen.onkeyrelease(release_left, "Left")
 screen.onkeyrelease(release_right, "Right")
 screen.onkeyrelease(release_forward, "Up")
+screen.onkeyrelease(release_fire, "space")
 
 #
 #  BEHAVIOURS
