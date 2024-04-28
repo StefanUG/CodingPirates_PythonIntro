@@ -153,6 +153,10 @@ B. frivillig
 
 ---
 
+## Husk : Copy+Paste
+
+---
+
 # Gå ind på
 
 - trinket.io/stefanug
