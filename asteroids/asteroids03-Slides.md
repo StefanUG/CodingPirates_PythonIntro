@@ -18,13 +18,17 @@ marp: true
 
 # Anderledes i dag
 
-* Lytte
-* Link til noter
-* Kode
+1. Først skal I lytte
+2. Så får I link til instruktioner
+3. Og så skal I kode
 
 ---
 
 # Hvordan opfører rumskibet sig ?
+
+Fik I spillet til at virke med `onkey` events ?
+
+Hvordan virker det?
 
 * Rigtig godt?
 * Eller lidt underligt ?
@@ -34,7 +38,7 @@ marp: true
 
 # Lad os se hvorfor
 
-* `turtle.onkey` lytter på et tast bliver trykket.
+* `turtle.onkey` lytter på en tast bliver trykket.
 * Den afhænger af computerens gentagelse
 * ligesom når man holder en knap nede, og den skriver det samme bogstav mange gange
 
@@ -155,12 +159,23 @@ B. frivillig
 
 ## Husk : Copy+Paste
 
+Hvis I ser noget kode som I gerne vil bruge:
+
+1. Marker det med musen eller brug `SHIFT + piletaster` til at markere det med
+2. Tryk `CTRL + C` eller `CMD + C` for at kopiere
+3. Gå derhen I koden hvor I vil have det ind.
+4. Tryk `CTRL + V` eller `CMD + V` for at sætte ind
+
 ---
 
-# Gå ind på
+# NU !!! Gå ind på:
 
-- trinket.io/stefanug
+## stefanug.trinket.io
+
 - og klik "Build an Asteroids Game in Python"
-- find Lesson 2
+- find Lesson 2 og "**Move the spaceship better**"
 
+Når I ser dette, så er der opgaver I skal løse, f.eks:
+
+- ✅ Lav et dictionary i jeres kode
 
