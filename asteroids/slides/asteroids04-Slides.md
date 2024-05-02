@@ -25,7 +25,7 @@ marp: true
 # Kan I huske 
 # koordinat systemet ?
 
-![bg contain](slide-resources/coordinate-system.svg)
+![bg contain](resources/coordinate-system.svg)
 
 ---
 

@@ -38,7 +38,7 @@ marp: true
 
 ---
 
-![bg fit](slide-resources/classification-of-animals.jpg)
+![bg fit](resources/classification-of-animals.jpg)
 
 by <a href="https://www.freepik.com/free-vector/hand-drawn-classification-animals-infographic_26526557.htm">Freepik</a>
 

@@ -4,7 +4,7 @@ Nu skal vi have rumskibet til at flytte sig til den anden side når den flyver u
 
 # Kan I huske koordinat systemet ?
 
-![coordinate system](slide-resources/coordinate-system.svg)
+![coordinate system](resources/coordinate-system.svg)
 
 ---
 

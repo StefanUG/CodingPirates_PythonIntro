@@ -37,7 +37,7 @@ med Turtle Graphics
 # Turtle's 
 # koordinat system
 
-![bg contain](slide-resources/coordinate-system.svg)
+![bg contain](resources/coordinate-system.svg)
 
 ---
 
@@ -186,7 +186,7 @@ screen.mainloop() # don't close the window
 
 # _     Ser det sådan ud?
 
-![bg fit](slide-resources/asteroids-01-screenshot.png)
+![bg fit](resources/asteroids-01-screenshot.png)
 
 ---
 
