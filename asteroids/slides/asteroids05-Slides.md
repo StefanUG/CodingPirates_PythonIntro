@@ -71,7 +71,7 @@ class Bird(Animal):
     def fly(self):
         print("Bird is flying")
 
-hawk = Animal()
+hawk = Bird()
 hawk.eat()
 ```
 
@@ -80,15 +80,16 @@ hawk.eat()
 
 ---
 
-# En Turtle i Python kan flytte sig
+# En Kugle er en Turtle !?!
 
+En Turtle i Python kan flytte sig...
 Men nu skal vi have en kugle til at kunne flere ting:
 
 * affyres 
 * ... og fra det sted rumskibet er
 * ramme asteroider
 
-Så vores `Bullet` skal være en `turtle.Turtle`, men kunne flere ting.
+Så vores `Bullet` skal være en `turtle.Turtle`, men kan flere ting.
 
 ---
 
@@ -103,10 +104,44 @@ class Bullet(turtle.Turtle):
     def fire(self, start):
 
     def move(self):
-
 ```
 
 Læg mærke til `__init__` funktionen. Det er til hver gang vi laver en ny `Bullet`.
+
+--- 
+
+# A note to `self`
+
+En funktion inde i en klasse skal altid have `self` som første parameter
+
+<div class="container">
+<div class="col">
+
+### Inde i en klasse
+
+```python
+class Bullet(turtle.Turtle):
+
+    def move(self):
+        self.forward(BULLET_SPEED)
+```
+
+</div>
+<div class="col">
+
+### Udenfor en klasse
+
+```python
+bullet = Bullet()
+bullet.forward(BULLET_SPEED)
+# eller blot
+bullet.move()
+```
+
+</div>
+</div>
+
+Inde i klassen ved man ikke på forhånd hvad variablen hedder udenfor.
 
 --- 
 
@@ -124,12 +159,17 @@ For hver ny kugle skal vi
 
 # Når kuglen affyres (`fire`)
 
+```python
+    def fire(self, start):
+```
+
 Når kuglen affyres, skal vi
 
 * Sætte den til aktiv (`self.active = False`)
 * Flytte den til start positionen
 * Sætte retningen den skal flyve i
 * Vise den
+* Læg mærke til `start` parameteren. Hvad tror I det er ?
 
 --- 
 
@@ -137,8 +177,10 @@ Når kuglen affyres, skal vi
 
 Hver gang kuglen flytter sig. I hvert game loop skal vi:
 
-* Flytte den lidt.
-* Og hvis den er kommet ud over kanten
+* Flytte den lidt - men hvor langt ?
+    * Hurtigere eller langsommere end rumskibet ?
+    * Lad os sige dobbelt så hurtigt: `BULLET_SPEED = PLAYER_SPEED * 2`
+* Hvis den er kommet ud over kanten
     * Skjule den
     * Sætte den til inaktiv (`self.active = False`)
 * Vi kan lave den lidt smartere senere
@@ -149,6 +191,7 @@ Hver gang kuglen flytter sig. I hvert game loop skal vi:
 
 Når din `Bullet` kan de 3 ting, så er du klar til at bruge den.
 
+* Definere en `BULLET_SPEED` konstant til dens hastighed
 * Vi skal have en ny `Bullet` i `# GAME SETUP` sektionen
 * Og vi skal have en ny "Behaviour" / en ny funktion
     * Lad os kalde den `move_bullets()`

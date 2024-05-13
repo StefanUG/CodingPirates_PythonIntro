@@ -12,11 +12,11 @@ SCREEN_WIDTH = 1200
 SCREEN_HEIGHT = 800
 BG_COLOR = "black"
 
-GAME_TICK = 20 # miliseconds, lower means faster game
-ROTATE_SPEED = 5 # turn 5 degrees each tick
-PLAYER_SPEED = 10 # Pixels to move player each tick
-BULLET_SPEED = PLAYER_SPEED * 2 # Double of player speed
-BULLET_LIFETIME = 75  # live for 200 game ticks
+GAME_TICK = 20  # milliseconds, lower means faster game
+ROTATE_SPEED = 5  # turn 5 degrees each tick
+PLAYER_SPEED = 10  # Pixels to move player each tick
+BULLET_SPEED = PLAYER_SPEED * 2  # Double of player speed
+BULLET_LIFETIME = 75  # game ticks
 
 HALF_WIDTH = int(SCREEN_WIDTH / 2)
 HALF_HEIGHT = int(SCREEN_HEIGHT / 2)
