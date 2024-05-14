@@ -172,4 +172,4 @@ Nu skal den nye funktion kaldes fra vores game loop
 
 # Prøv spillet
 
-- ✅ Start spillet og se hvad der sker når rumskibet flyver ud af skærmen
+- ✅ Start spillet og se hvad der sker når du skyder en kugle

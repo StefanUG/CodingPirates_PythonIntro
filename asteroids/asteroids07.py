@@ -12,11 +12,11 @@ SCREEN_WIDTH = 1200
 SCREEN_HEIGHT = 800
 BG_COLOR = "black"
 
-GAME_TICK = 20 # miliseconds, lower means faster game
-ROTATE_SPEED = 5 # turn 5 degrees each tick
-PLAYER_SPEED = 10 # Pixels to move player each tick
-BULLET_SPEED = PLAYER_SPEED * 2 # Double of player speed
-BULLET_LIFETIME = 75  # live for 200 game ticks
+GAME_TICK = 20  # milliseconds, lower means faster game
+ROTATE_SPEED = 5  # turn 5 degrees each tick
+PLAYER_SPEED = 10  # Pixels to move player each tick
+BULLET_SPEED = PLAYER_SPEED * 2  # Double of player speed
+BULLET_LIFETIME = 75  # game ticks
 MAX_BULLETS = 20
 
 HALF_WIDTH = int(SCREEN_WIDTH / 2)
@@ -159,10 +159,10 @@ def move_spaceship():
 def move_bullets():
     inactive_bullet = None
     for bullet in bullets:
-        if not bullet.active:
-            inactive_bullet = bullet
-        elif bullet.active:
+        if bullet.active:
             bullet.move()
+        else:
+            inactive_bullet = bullet
 
     if keys_pressed["space"] and inactive_bullet:
         inactive_bullet.fire(player)

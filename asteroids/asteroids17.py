@@ -14,13 +14,13 @@ SCREEN_WIDTH = 1200
 SCREEN_HEIGHT = 800
 BG_COLOR = "black"
 
-GAME_TICK = 20 # miliseconds, lower means faster game
-ROTATE_SPEED = 5 # turn 5 degrees each tick
-PLAYER_SPEED = 10 # Pixels to move player each tick
+GAME_TICK = 20  # milliseconds, lower means faster game
+ROTATE_SPEED = 5  # turn 5 degrees each tick
+PLAYER_SPEED = 10  # Pixels to move player each tick
 PLAYER_START_HEALTH = 3
 PLAYER_GRACE_PERIOD = 3 # seconds
-BULLET_SPEED = PLAYER_SPEED * 2 # Double of player speed
-BULLET_LIFETIME = 75  # live for 200 game ticks
+BULLET_SPEED = PLAYER_SPEED * 2  # Double of player speed
+BULLET_LIFETIME = 75  # game ticks
 MAX_BULLETS = 10
 RELOAD_TIME = 5  # ticks between reload
 MAX_ASTEROIDS = 10
@@ -277,9 +277,7 @@ def move_bullets():
     player.cooldown()
     inactive_bullet = None
     for bullet in bullets:
-        if not bullet.active:
-            inactive_bullet = bullet
-        elif bullet.active:
+        if bullet.active:
             bullet.move()
             hit_asteroid = check_collission(bullet)
             if hit_asteroid:
@@ -288,6 +286,8 @@ def move_bullets():
                 bullet.active = False
                 player.score += 1
                 draw_score()
+        else:
+            inactive_bullet = bullet
 
     if keys_pressed["space"] and inactive_bullet:
         player.shoot(inactive_bullet)
