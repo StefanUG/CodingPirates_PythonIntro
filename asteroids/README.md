@@ -14,9 +14,9 @@
 
 # Step by step
 
-- 1 Create Screen
-- 1 Create Player
-- 2-3 Make player move with events
+- 1 Create Screen and Player
+- 2 Make the spaceship move  with events
+- 3 Make it move better with keypress and keyrelease
 - 4 Make the spaceship shoot with one bullet
 - 5 Prevent player from exiting the screen (or appearing in the other side)
 - 6 Add a lifetime to the bullets, and make them move across screens too
@@ -42,7 +42,11 @@ More advanced
 - make custom shapes for asteroids
 - make random shapes for asteroids
 - make the asteroids rotate as they move
+- 
 
+## Noter om materialet
+
+Følg selv med materialet for lesson 2 var lidt for svært. Bør rettes til, så det bliver lidt letter.
 
 ## Acceleration
 

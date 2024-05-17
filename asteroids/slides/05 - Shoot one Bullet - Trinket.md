@@ -17,7 +17,7 @@ BULLET_SPEED = PLAYER_SPEED * ???
 
 ## Ny sektion til vores `Classes`
 
-Lav en ny kommentar efter konstanterne og før `Events`
+Lav en ny kommentar efter konstanterne og før `GAME SETUP`
 
 ```python
 #
@@ -25,7 +25,7 @@ Lav en ny kommentar efter konstanterne og før `Events`
 #
 ```
 
-- ✅ Indsæt kommentaren efter konstanterne og før `Events`
+- ✅ Indsæt kommentaren efter konstanterne og før `GAME SETUP`
 
 ---
 
