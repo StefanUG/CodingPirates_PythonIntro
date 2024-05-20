@@ -85,7 +85,7 @@ class Asteroid(turtle.Turtle):
     def __init__(self):
         super().__init__()
         self.shape("circle")
-        self.shapesize(stretch_wid=3, stretch_len=3)
+        self.shapesize(3, 3)
         self.color("white", BG_COLOR)
         self.penup()
         x = random.randint(-HALF_WIDTH, HALF_WIDTH)

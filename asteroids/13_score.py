@@ -90,7 +90,7 @@ class Asteroid(turtle.Turtle):
     def __init__(self):
         super().__init__()
         self.shape("circle")
-        self.shapesize(stretch_wid=3, stretch_len=3)
+        self.shapesize(3, 3)
         self.color("white", BG_COLOR)
         self.penup()
         x = random.randint(-HALF_WIDTH, HALF_WIDTH)
@@ -204,7 +204,7 @@ def move_if_out_of_bounds(t: turtle.Turtle):
         t.goto(x, HALF_HEIGHT)
 
 
-def check_collission(with_turtle):
+def check_collision(with_turtle):
     # Check for collisions between the player and asteroids
     for asteroid in asteroids:
         if asteroid.isvisible() and abs(with_turtle.distance(asteroid)) < asteroid.radius:
@@ -220,7 +220,7 @@ def move_spaceship():
     if keys_pressed["Up"]:
         player.forward(PLAYER_SPEED)
         move_if_out_of_bounds(player)
-        if check_collission(player):
+        if check_collision(player):
             player.alive = False
 
     
@@ -230,7 +230,7 @@ def move_bullets():
     for bullet in bullets:
         if bullet.active:
             bullet.move()
-            hit_asteroid = check_collission(bullet)
+            hit_asteroid = check_collision(bullet)
             if hit_asteroid:
                 hit_asteroid.hideturtle()
                 bullet.hideturtle()
