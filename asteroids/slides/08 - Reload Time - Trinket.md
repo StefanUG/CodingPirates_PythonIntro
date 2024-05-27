@@ -37,11 +37,11 @@ Fra `# GAME SETUP` til `# CLASSES`
 player = turtle.Turtle()
 player.shape("triangle")
 player.color("light grey", BG_COLOR)
-player.shapesize(...)
+player.shapesize(0.75, 1.5)
 player.penup()
 ```
 
-- ✅ Find og fjern de linier fra `# GAME SETUP` sektionen
+- ✅ Find og fjern de linier fra `# GAME SETUP` sektionen (kun dem med `player` og **ikke** dem med `screen`)
 
 
 ### Efter
@@ -53,7 +53,7 @@ class Player(turtle.Turtle):
         super().__init__()
         self.shape("triangle")
         self.color("light grey", BG_COLOR)
-        self.shapesize(...)
+        self.shapesize(0.75, 1.5)
         self.penup()
 
 # GAME SETUP
@@ -62,7 +62,7 @@ player = Player()
 
 
 
-- ✅ Indsæt `Player` klassen i `# CLASSES` sektionen
+- ✅ Indsæt `Player` klassen i `# CLASSES` sektionen, f.eks. før `Bullet` klassen
 - ✅ Indsæt `player = Player()` i `# GAME SETUP` sektionen, hvor du før fjernede det andet fra
 
 
@@ -107,7 +107,7 @@ Det samlede kode:
             self.fire_cooldown = RELOAD_TIME
 ```
 
-- ✅ Indsæt `shoot` funktionen i `Player` klassen efter `__init__` funktionen
+- ✅ Indsæt den samlede `shoot` funktion i `Player` klassen efter `__init__` funktionen
 
 --- 
 
@@ -128,7 +128,7 @@ Det samlede kode:
             self.fire_cooldown -= 1
 ```
 
-- ✅ Indsæt `cooldown` funktionen i `Player` klassen efter `shoot` funktionen
+- ✅ Indsæt den samlede `cooldown` funktion i `Player` klassen efter `shoot` funktionen
 
 
 --- 

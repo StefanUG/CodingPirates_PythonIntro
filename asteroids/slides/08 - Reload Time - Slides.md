@@ -56,7 +56,7 @@ Fra `# GAME SETUP` til `# CLASSES`
 player = turtle.Turtle()
 player.shape("triangle")
 player.color("light grey", BG_COLOR)
-player.shapesize(...)
+player.shapesize(0.75, 1.5)
 player.penup()
 ```
 
@@ -72,7 +72,7 @@ class Player(turtle.Turtle):
         super().__init__()
         self.shape("triangle")
         self.color("light grey", BG_COLOR)
-        self.shapesize(...)
+        self.shapesize(0.75, 1.5)
         self.penup()
 
 # GAME SETUP
@@ -145,7 +145,7 @@ Nu er vi klar til at rette game loop til.
 ## stefanug.trinket.io
 
 - og klik "Build an Asteroids Game in Python"
-- find Lesson 4 og "**Reload Time**"
+- find Lesson 4 og "**8. Reload Time**"
 
 Når I ser dette, så er der opgaver I skal løse, f.eks:
 

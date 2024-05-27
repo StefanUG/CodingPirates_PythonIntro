@@ -1,98 +1,87 @@
-# Vi starter med at importere turtle
+---
+theme: gaia
+marp: true
+---
+<style>
+.container{
+    display: flex;
+}
+.col{
+    flex: 1;
+}
+</style>
+<!-- need to enable HTML in the MARP extension -->
 
-så vi kan bruge den i vores kode
+# Asteroids Game
+
+## Flytte rumskibet
+
+---
+
+# I dag skal vi lære om
+
+* Events
+* altså at "lytte" på når noget sker udenfor spillet
+* f.eks. at et menneske trykker på en knap
+
+---
+
+# At "lytte" efter Events
+
+- For at flytte rumskibet skal vi lytte på nogle events.
 
 ```python
-import turtle
+screen.listen()  # Fortæl turtle screen at den skal lytte på events.
+screen.onkey(function, key)
+```
+
+### Men hvad er function og key ?
+
+* `funktion` skal være navnet på en funktion som kaldes
+* når `key`-knappen den trykkes på
+
+---
+
+# Lad os starte med nogle konstanter
+
+### Rotate speed og Player speed
+
+Vi skal bestemme den hastighed rumskibet drejer rundt og flytter sig med.
+
+```python
+ROTATE_SPEED = 5
+PLAYER_SPEED = 10
+```
+
+At have disse ting i konstanter gør det nemmere at rette til senere, hvis man ønsker at justere hastigheden.
+
+---
+
+# Functions / funktioner
+
+- Vi skal lave en funktion som bliver kaldt når noget sker...
+ 
+f.eks. når vi trykker på "Left", alstå den venstre piletast
+
+```python
+def press_left():
+    player.left(ROTATE_SPEED)
+    screen.update()
+
+screen.listen()
+screen.onkey(press_left, "Left")
 ```
 
 ---
 
-# Lad os definere nogle konstanter
+# NU !!! Gå ind på:
 
-Det gør det nemmere at justere spillet senere hen
+## stefanug.trinket.io
 
-```python
-#
-#  CONSTANTS
-#
+- og klik "Build an Asteroids Game in Python"
+- find Lesson 1 og "**2. Move spaceship**"
 
-SCREEN_WIDTH = 1200 # Bredden på skærmbilledet
-SCREEN_HEIGHT = 800 # Højden
-BG_COLOR = "black" # Baggrundsfarven
-```
+Når I ser dette, så er der opgaver I skal løse, f.eks:
 
-En konstant er en slags variabel, men som ikke ændrer sig mens programmet kører
-
----
-
-# Bagefter sætter vi skærmen op
-
-```python
-#
-#  GAME SETUP
-#
-
-# Set up the screen
-screen = turtle.Screen()
-screen.setup(SCREEN_WIDTH, SCREEN_HEIGHT) # width and height
-screen.bgcolor(BG_COLOR) # background color
-screen.tracer(0) # disable the built in movement animation of turtle
-```
-
-Det laver vinduet, sætter størrelsen og baggrundsfarven på det, og slår den indbyggede bevægelses-animation fra.
-
----
-
-# Lad os lave et rumskib
-
-```python
-# Make a turtle for the player
-player = turtle.Turtle()
-player.shape("triangle")
-player.color("light grey", BG_COLOR)
-player.penup() # to not draw lines
-```
-
-- Her bruger vi en `triangle` shape til vores turtle, sætter den til lysegrå med sort fyld.
-- Derefter strækker vi den i længden så den ligner mere et rumskib
-- Til sidst løfter vi pen'en, så den ikke tegner streger efter sig.
-
-
----
-
-# Lad os se vores spil
-
-```python
-#
-#  START THE GAME
-#
-
-screen.update() # Since we disabled the tracer, we manually have to update the screen
-screen.mainloop() # don't close the window
-```
-
-- Nu skal vi opdatere skærmen med det vi har sat på den: rumskibet.
-- Det skal vi selv gøre fordi vi har slået `tracer` (aninationen) fra.
-- Og den sidste linie i koden kalder vi `mainloop` funktionen, så programmet ikke stopper
-
-
----
-
-# Ser det sådan ud?
-
-![asteroids 1 screenshot](https://github.com/StefanUG/CodingPirates_PythonIntro/blob/main/asteroids/slides/resources/asteroids-01-screenshot.png?raw=true)
-
----
-
-# Skal vi have rumbkibet til at se lidt bedre ud ?
-
-```python
-# Stretch the triangle to be pointy
-player.shapesize(stretch_wid=0.75, stretch_len=1.5)
-```
-
-- Her strækker vi den i længden så den ligner mere et rumskib
-
-Hvor skal vi sætte den kode ind?
+- ✅ Sæt koden ind i `CONSTANTS` sektionen
 

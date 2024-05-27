@@ -254,6 +254,10 @@ player.shapesize(stretch_wid=0.75, stretch_len=1.5)
 
 - Her strækker vi den i længden så den ligner mere et rumskib
 
+Man kan også gøre det kortere:
+```python
+player.shapesize(0.75, 1.5)
+```
 Hvor skal vi sætte den kode ind?
 
 ---
