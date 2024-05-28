@@ -98,7 +98,7 @@ pen.color("white")
 
 # Skrifttype 
 
-Vi gider ikke hele tiden at skrive hvilken skrifttype vi vil skrive med, så lad os definere en konstant til det:
+Vi gider ikke hele tiden at skrive hvilken skrifttype vi vil skrive med, så lad os definere en konstant til det. Vi vil bruge skrifttypen "Courier New". Det er en "fixed width" type, som passer til vores spil.
 
 ```python
 FONT_FAMILY = "Courier New"
