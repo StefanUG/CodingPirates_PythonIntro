@@ -1,6 +1,5 @@
 import turtle
 import random
-import time
 
 """
 Let's get some health
@@ -253,7 +252,7 @@ def move_spaceship():
         player.forward(PLAYER_SPEED)
         move_if_out_of_bounds(player)
         if check_collision(player):
-            player.alive = False
+            player.hit()
 
 
 def move_bullets():

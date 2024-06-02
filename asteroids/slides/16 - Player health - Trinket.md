@@ -1,18 +1,4 @@
----
-theme: gaia
-marp: true
----
-<style>
-.container{
-    display: flex;
-}
-.col{
-    flex: 1;
-}
-</style>
-<!-- need to enable HTML in the MARP extension -->
-
-# Asteroids Game
+# Player Health
 
 ## Skal vi ikke have mere end et liv?
 
@@ -27,10 +13,14 @@ Vi skal da have nogle flere liv: Player Health
 * Vi har stadig en `pen`-Turtle, til at skrive på skærmen med
 * Den skal vi flytte til under "SCORE"
 * Og så kan vi skrive "HEALTH"
-* ```python
-  pen.goto(-HALF_WIDTH + 20, HALF_HEIGHT - 60)
-  pen.write("HEALTH: ", font=SCORE_FONT)
-  ```
+
+```python
+pen.goto(-HALF_WIDTH + 20, HALF_HEIGHT - 60)
+pen.write("HEALTH: ", font=SCORE_FONT)
+```
+
+- ✅ Sæt koden ind i `#  GAME SETUP` sektionen, f.eks. efter vi lige har skrevet "SCORE" ud på skærmen.
+
 
 ---
 
@@ -40,12 +30,16 @@ Vi skal da have nogle flere liv: Player Health
 * Skrive med hvid farve
 * Løfte pennen så der ikke kommer streger
 * Flytte den til det efter "HEALTH: "
-* ```python
-  health_pen = turtle.Turtle(visible=False)
-  health_pen.color("white")
-  health_pen.penup()
-  health_pen.goto(-HALF_WIDTH + 90, HALF_HEIGHT - 60)
-  ```
+
+```python
+health_pen = turtle.Turtle(visible=False)
+health_pen.color("white")
+health_pen.penup()
+health_pen.goto(-HALF_WIDTH + 90, HALF_HEIGHT - 60)
+```
+
+- ✅ Sæt koden ind i `#  GAME SETUP` sektionen, f.eks. efter vi har sat `score_pen` op.
+
 
 ---
 
@@ -53,9 +47,13 @@ Vi skal da have nogle flere liv: Player Health
 
 * Lad os definere en konstant 
 * med måske `3` liv?
-* ```python
-  PLAYER_START_HEALTH = 3
-  ```
+
+```python
+PLAYER_START_HEALTH = 3
+```
+
+- ✅ Sæt koden ind i `#  CONSTANTS` sektionen
+
 
 --- 
 
@@ -66,9 +64,12 @@ Nu skal spilleren have noget liv, så vi kan tælle det ned.
 * Til det skal vi bruge en variabel på `Player` klassen
 * Kald den `health`
 * Sæt den til `PLAYER_START_HEALTH` i første omgang
-* ```python
-          self.health = PLAYER_START_HEALTH
-  ```
+
+```python
+        self.health = PLAYER_START_HEALTH
+```
+
+- ✅ Sæt koden ind i `Player.__init__` funktionen, f.eks. efter vi har sat `self.score` til `0`.
 
 --- 
 
@@ -79,11 +80,14 @@ Vi skal skrive antal liv hver gang den ændrer sig, så lad os lave en ny funkti
 * Lad os kalde den `draw_health`
 * Den skal rydde det den tidligere har skrevet
 * skrive det nye antal liv
-* ```python
-  def draw_health():
-      health_pen.clear()
-      health_pen.write(player.health, font=SCORE_FONT)
-  ```
+
+```python
+def draw_health():
+    health_pen.clear()
+    health_pen.write(player.health, font=SCORE_FONT)
+```
+
+- ✅ Sæt koden ind i `#  BEHAVIOURS` sektionen, f.eks. efter `draw_score` funktionen.
 
 ---
 
@@ -96,11 +100,6 @@ Hvad skal der ske når rumskibet bliver ramt ?
 * Opdatere antal liv tilbage på skærmen
 * Hvis spilleren har 0 liv tilbage skal vi sætte `alive` til `False`
 
----
-
-# Ny `hit` funktion på `Player` klassen
-
-Det kan skrives sådan her
 
 ```python
       def hit(self):
@@ -109,37 +108,35 @@ Det kan skrives sådan her
 
           if self.health == 0:
               self.alive = False
-  ```
+```
+
+- ✅ Sæt koden ind i `Player` klassen, f.eks. efter `cooldown` funktionen.
 
 ---
 
 # Hvor (i koden) bliver man ramt ?
 
 * Før havde vi logik i `move_asteroids` som siger spilleren ikke er i live mere, når den bliver ramt.
-* Før:
-  ```python
-                  player.alive = False
-  ```
-* Nu skal vi kalde den nye funktion i stedet for
-* Efter:
-  ```python
-                  player.hit()
-  ```
 
----
+Før:
 
-# Også i `move_spaceship`
+```python
+                player.alive = False
+```
 
-* Vi havde en lignende logik i `move_spaceship` som siger spilleren ikke er i live mere, når man flyver ind i en asteroide
-* Før:
-  ```python
-                  player.alive = False
-  ```
-* Nu skal vi kalde den nye funktion i stedet for
-* Efter:
-  ```python
-                  player.hit()
-  ```
+Nu skal vi kalde den nye funktion i stedet for
+
+Efter:
+
+```python
+                player.hit()
+```
+
+Vi havde en lignende logik i `move_spaceship` som siger spilleren ikke er i live mere, når man flyver ind i en asteroide
+
+
+- ✅ I `move_asteroids` funktionen, find `player.alive = False` og erstat det med `player.hit()`.
+- ✅ I `move_spaceship` funktionen, find `player.alive = False` og erstat det med `player.hit()`.
 
 ---
 
@@ -154,17 +151,10 @@ Nu mangler vi kun en ting:
 draw_health()
 ```
 
+- ✅ Indsæt koden i `#  START THE GAME` sektionen, f.eks. efter `draw_score()`
+
 ---
 
-# NU !!! Gå ind på:
+## Prøv spillet
 
-## stefanug.trinket.io
-
-- og klik "Build an Asteroids Game in Python"
-- find Lesson 6 og "**16. Player Health**"
-
-Når I ser dette, så er der opgaver I skal løse, f.eks:
-
-- ✅ Sæt koden ind i `CONSTANTS` sektionen
-
- 
+- ✅ Prøv spillet og se om ikke dine liv tæller ned
