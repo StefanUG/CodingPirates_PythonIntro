@@ -1,16 +1,16 @@
 # Asteroid spil forløb
 
 
-| Uge | 1. time | 2. time |
-|:-:|--|--|
-| 0 | Workshop præsentation   | Install PyCharm, start på projekt, create screen and a player (1), simple events (2) |
-| 1 | Intro til Game Loop, move better (3)  | Wrap player (4), function with parameters  |
-| 2 | Intro til classes, create a bullet, make spaceship shoot (5) | Wrap the bullet (6), add more bullets (7)   |
-| 3 | Refactor to Player class and shoot less rapidly (8)    | Add asteroids (9) and shoot them (10) but not the invisible ones (11)  |
-| 4 | Game over when hitting asteroid (12) and keep a score (13)  | Make the asteroids move (14) and respawn (15)  |
-| 5 | Let's have more than one life (16)   |  Let's add a grace period (17)  |
-| 6 | Flash when hit (18)  |  Move with thrust like in space (19)  |
-| 7 | Thrust animation (20)  |  Demo to the others  |
+| Uge | 1. time                                                      | 2. time                                                                              |
+|:---:|--------------------------------------------------------------|--------------------------------------------------------------------------------------|
+|  1  | Workshop præsentation                                        | Install PyCharm, start på projekt, create screen and a player (1), simple events (2) |
+|  2  | Intro til Game Loop, move better (3)                         | Wrap player (4), function with parameters                                            |
+|  3  | Intro til classes, create a bullet, make spaceship shoot (5) | Wrap the bullet (6), add more bullets (7)                                            |
+|  4  | Refactor to Player class and shoot less rapidly (8)          | Add asteroids (9) and shoot them (10) but not the invisible ones (11)                |
+|  5  | Game over when hitting asteroid (12) and keep a score (13)   | Make the asteroids move (14) and respawn (15)                                        |
+|  -  | Let's have more than one life (16)                           | Let's add a grace period (17), Flash when hit (18)                                   |
+|  6  | Move with thrust like in space (19)                          | Thrust animation (20)                                                                |
+|  7  | Make it yours                                                | Demo to the others                                                                   |
 
 # Step by step
 
@@ -42,11 +42,17 @@ More advanced
 - make custom shapes for asteroids
 - make random shapes for asteroids
 - make the asteroids rotate as they move
+- don't spawn asteroids on top of player
+- get hit by one's own shots
+
+Make it yours!
+
+- Change background color
 - 
 
 ## Noter om materialet
 
-Følg selv med materialet for lesson 2 var lidt for svært. Bør rettes til, så det bliver lidt letter.
+Følg selv med materialet for lesson 2 var lidt for svært. Bør rettes til, så det bliver lidt lettere.
 
 ## Acceleration
 
