@@ -72,9 +72,9 @@ Nu skal spilleren have noget liv, så vi kan tælle det ned.
 
 --- 
 
-# Ny funktion til at skrive `player.health`
+# Funktion til at skrive `player.health`
 
-Vi skal skrive antal liv hver gang den ændrer sig, så lad os lave en ny funktion til det.
+Vi skal skrive antal liv på skærmen hver gang den ændrer sig, så lad os lave en ny funktion til det.
 
 * Lad os kalde den `draw_health`
 * Den skal rydde det den tidligere har skrevet
@@ -149,10 +149,9 @@ Nu mangler vi kun en ting:
 
 * At skrive antal liv på skørmen
 * ... når spillet starter
-
-```python
-draw_health()
-```
+* ```python
+  draw_health()
+  ```
 
 ---
 

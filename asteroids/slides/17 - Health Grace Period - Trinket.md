@@ -1,20 +1,4 @@
----
-theme: gaia
-marp: true
----
-<style>
-.container{
-    display: flex;
-}
-.col{
-    flex: 1;
-}
-</style>
-<!-- need to enable HTML in the MARP extension -->
-
-# Asteroids Game
-
-## Forsvinder livene for hurtigt?
+# Forsvinder livene for hurtigt?
 
 Når hvert game tick tæller dine liv ned så går det ret hurtigt med at miste de liv.
 
@@ -26,9 +10,12 @@ Lad os indsætte en lille "henstandstid" aka "Grace Period"
 
 * Lad os sige 3 sekunder
 * Burde være tid nok til at komme væk fra asteroiden
-* ```python
-  PLAYER_GRACE_PERIOD = 3 # seconds
-  ```
+
+```python
+PLAYER_GRACE_PERIOD = 3 # seconds
+```
+
+- ✅ Sæt koden ind i `#  CONSTANTS` sektionen
 
 ---
 
@@ -44,19 +31,30 @@ Nu skal vi til at holde styr på tiden, så vi kan tælle sekunder.
 * Torsdag, 1. januar 1970, kl 00:00:00
 * Også kalder `epoch`
 
+
+- ✅ Indsæt `import time` øverst i filen, f.eks. på en linie lige efter `import random`
+
+
 ---
 
 # Hvornår blev spilleren sidst ramt?
 
 Vi skal have en ny variabel til at holde styr på hvornår spilleren sidst blev ramt
 
-* ```python
-  self.last_hit = 0.0
-  ```
-* Hver gang spilleren rammes, sætter vi den til nuværende tid
-* ```python
-  self.last_hit = time.time()
-  ```
+```python
+self.last_hit = 0.0
+```
+
+- ✅ Sæt koden ind i `Player.hit` funktionen, f.eks. efter `self.health` bliver sat.
+
+
+Hver gang spilleren rammes, sætter vi den til nuværende tid
+
+```python
+self.last_hit = time.time()
+```
+
+Det kan vi så bruge senere...
 
 ---
 
@@ -78,9 +76,9 @@ Lad os sige følgende:
 - `PLAYER_GRACE_PERIOD` er 3 sekunder
 - Nu bliver vi ramt efter 2 sekunder, dvs. `time.time()` er `22`
 
-Hvordan kan vi bruge det til at regne ud vi er udødelig lige nu?
+Hvordan kan vi bruge de tre variabler til regne ud vi er udødelig lige nu?
 
-* Hvis `last_hit + PLAYER_GRACE_PERIOD > time.time()` = udødelig
+* Hvis `last_hit + PLAYER_GRACE_PERIOD > time.time()`, så er man udødelig
 * Hvis `20 + 3` er større end `22` ... er det det ?
 
 ---
@@ -92,12 +90,13 @@ Det er meget at skrive hver gang, og ikke særlig beskrivende
 * Lad os lave en funktion med et bedre navn til det
 * Kald den `is_invincible`
 * Lad den returnere om spilleren er udødlig lige nu eller ej
-* ```python
-      def is_invincible(self):
-          return self.last_hit + PLAYER_GRACE_PERIOD > time.time()
-  ```
-* Hvad gør `return` ?
 
+```python
+    def is_invincible(self):
+        return self.last_hit + PLAYER_GRACE_PERIOD > time.time()
+```
+
+- ✅ Sæt koden ind i `Player` klassen, f.eks. før `hit` funktionen
 
 ---
 
@@ -112,10 +111,6 @@ Nu skal vi til at tjekke reglerne i `Player.hit` funktionen
 * Til sidst, hvis ens liv er 0,
   * sæt `alive` til `False`
 
----
-
-# Opdateret `Player.hit` funktion
-
 Samlet set, så skal `Player.hit` funktionen nu se sådan her ud:
 
 ```python
@@ -128,6 +123,8 @@ Samlet set, så skal `Player.hit` funktionen nu se sådan her ud:
         if self.health == 0:
             self.alive = False
 ```
+
+- ✅ Erstat den nuværende `hit` funktion i `Player` klassen med koden herover
 
 ---
 
@@ -145,6 +142,8 @@ def animate_spaceship():
         player.color("light grey", BG_COLOR)
 ```
 
+- ✅ Sæt koden ind i `# BEHAVIOURS` sektionen,  f.eks. før `move_spaceship` funktionen
+
 ---
 
 # Kald `animate_spaceship` fra game loop
@@ -155,17 +154,11 @@ I `update` funktionen skal vi kalde den nye funktion, f.eks. efter `move_spacesh
     animate_spaceship()
 ```
 
+- ✅ Sæt koden ind i `update` funktionen fra `# GAME LOOP` sektionen, f.eks. lige efter kaldet til `move_spaceship()`
+
+
 ---
 
-# NU !!! Gå ind på:
+# Prøv spillet
 
-## stefanug.trinket.io
-
-- og klik "Build an Asteroids Game in Python"
-- find Lesson 6 og "**17. Health Grace Period**"
-
-Når I ser dette, så er der opgaver I skal løse, f.eks:
-
-- ✅ Sæt koden ind i `CONSTANTS` sektionen
-
- 
+- ✅ Start spillet og se om ikke rumskibet bliver rødt når det bliver ramt af asteroiderne
