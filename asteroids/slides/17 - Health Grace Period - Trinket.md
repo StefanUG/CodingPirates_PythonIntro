@@ -45,16 +45,16 @@ Vi skal have en ny variabel til at holde styr på hvornår spilleren sidst blev 
 self.last_hit = 0.0
 ```
 
-- ✅ Sæt koden ind i `Player.hit` funktionen, f.eks. efter `self.health` bliver sat.
+- ✅ Sæt koden ind i `Player.__init__` funktionen, f.eks. efter `self.health` bliver sat.
 
 
-Hver gang spilleren rammes, sætter vi den til nuværende tid
+Hver gang spilleren rammes, sætter vi den til nuværende tid, f.eks. sådan her.
 
 ```python
 self.last_hit = time.time()
 ```
 
-Det kan vi så bruge senere...
+Det kan vi så bruge senere... Gør ikke noget endnu...
 
 ---
 

@@ -36,6 +36,7 @@
 - 20 add thrust animation
 
 More advanced
+
 - break down asteroids when they are shot
 - make the ship follow the mouse pointer and click to shoot
 - make explosion animations
@@ -48,11 +49,18 @@ More advanced
 Make it yours!
 
 - Change background color
-- 
+- Change player shape or color
+- Change asteroid shape or color
+- Change keys that control the spaceship
+
 
 ## Noter om materialet
 
-Følg selv med materialet for lesson 2 var lidt for svært. Bør rettes til, så det bliver lidt lettere.
+Følg-selv med materialet for lesson 2 var lidt for svært. Bør rettes til, så det bliver lidt lettere.
+
+"indsæt efter en funktion" instruktionerne sætter børnene bare ind efter et kald til en funktion. Ikke efter definitionen på den. 
+Gennemgå på et passende tidspunkt hvad der menes med sådan en sætning.
+
 
 ## Acceleration
 
