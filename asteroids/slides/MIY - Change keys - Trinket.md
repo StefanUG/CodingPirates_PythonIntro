@@ -31,3 +31,16 @@ screen.onkeyrelease(release_fire, "space")
 ```
 
 Men bemærk CAPS LOCK
+
+Hvis du vil være sikker, kan du også lytte på de store bogstaver:
+
+
+```python
+screen.listen()
+screen.onkeypress(press_left, "A")
+screen.onkeypress(press_right, "S")
+screen.onkeypress(press_forward, "W")
+screen.onkeyrelease(release_left, "A")
+screen.onkeyrelease(release_right, "D")
+screen.onkeyrelease(release_forward, "W")
+```
