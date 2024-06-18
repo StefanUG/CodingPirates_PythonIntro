@@ -17,3 +17,19 @@ Gå til
 Vil du ændre farver, skifte skrifttype eller taster. Eller vil du ændre formen på asteroiderne eller spilleren.
 
 Naviger til det du ønsker at ændre og prøv det af.
+
+---
+
+## Skift skærmstørrelse
+
+Nogle har en mindre skærmopløsning, så størrelsen på vinduet ikke passer. 
+Ændr det i `# CONSTANTS` hvis du ønsker
+
+F.eks. til:
+
+```python
+SCREEN_WIDTH = 1000
+SCREEN_HEIGHT = 600
+```
+
+Du kan også gøre vinduet større, hvis du har mere plads på skærmen.
