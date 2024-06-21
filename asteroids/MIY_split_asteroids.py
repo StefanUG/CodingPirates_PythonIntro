@@ -4,7 +4,7 @@ import time
 import math
 
 """
-Fancy colors
+Let us split the asteroids into smaller ones, when shot
 """
 
 #
@@ -13,7 +13,7 @@ Fancy colors
 
 SCREEN_WIDTH = 1200
 SCREEN_HEIGHT = 800
-BG_COLOR = "light sky blue"
+BG_COLOR = "black"
 
 GAME_TICK = 20  # milliseconds, lower means faster game
 ROTATE_SPEED = 5  # turn 5 degrees each tick
@@ -38,8 +38,8 @@ HALF_HEIGHT = int(SCREEN_HEIGHT / 2)
 
 SPACESHIP_SHAPE = ( (7,-20), (0,5), (-7,-20) )
 SPACESHIP_THRUST_SHAPE = turtle.Shape('compound')
-SPACESHIP_THRUST_SHAPE.addcomponent(SPACESHIP_SHAPE, "firebrick", 'cadet blue')
-SPACESHIP_THRUST_SHAPE.addcomponent(( (7,-20), (0,-30), (-7,-20) ), "red", 'red')
+SPACESHIP_THRUST_SHAPE.addcomponent(SPACESHIP_SHAPE, BG_COLOR, 'light grey')
+SPACESHIP_THRUST_SHAPE.addcomponent(( (7,-20), (0,-30), (-7,-20) ), BG_COLOR, 'orange')
 
 
 #
@@ -52,7 +52,7 @@ class Bullet(turtle.Turtle):
     def __init__(self):
         super().__init__()
         self.shape("square")
-        self.color("indigo")
+        self.color("light grey")
         self.shapesize(stretch_wid=0.2, stretch_len=0.2)
         self.penup()
         self.hideturtle()
@@ -81,7 +81,7 @@ class Player(turtle.Turtle):
     def __init__(self):
         super().__init__()
         self.shape("spaceship")
-        self.color("cadet blue", "firebrick")
+        self.color("light grey", BG_COLOR)
         self.penup()  # to not draw lines
 
         self.fire_cooldown = 0
@@ -133,22 +133,29 @@ class Player(turtle.Turtle):
 
 class Asteroid(turtle.Turtle):
 
-    def __init__(self):
+    def __init__(self, size = 3):
         super().__init__()
         self.shape("circle")
-        self.shapesize(3, 3)
-        self.color("gray", "deep pink")
+        self.shapesize(size, size)
+        self.color("white", BG_COLOR)
         self.penup()
-        x = random.randint(-HALF_WIDTH, HALF_WIDTH)
-        y = random.randint(-HALF_HEIGHT, HALF_HEIGHT)
-        self.goto(x, y)
 
-        self.radius = 30
+        self.children = []
+        if size > 1:
+            for i in range(2):
+                a = Asteroid(size - 1)
+                a.hideturtle()
+                self.children.append(a)
+
+        self.radius = size * 10
         self.speed = 0
         self.respawn_in = 0
         self.reset()
 
     def reset(self):
+        x = random.randint(-HALF_WIDTH, HALF_WIDTH)
+        y = random.randint(-HALF_HEIGHT, HALF_HEIGHT)
+        self.goto(x, y)
         self.setheading(random.randint(0, 360))
         self.speed = random.randint(ASTEROID_SPEED_MIN, ASTEROID_SPEED_MAX)
         self.showturtle()
@@ -156,6 +163,21 @@ class Asteroid(turtle.Turtle):
     def hit(self):
         self.hideturtle()
         self.respawn_in = ASTEROID_RESPAWN_AFTER
+        for child in self.children:
+            child.goto(self.pos())
+            child.showturtle()
+
+    def move(self):
+        self.forward(self.speed)
+        move_if_out_of_bounds(self)
+        for child in self.children:
+            child.move()
+
+    def all_asteroids(self):
+        all = [*self.children]
+        for child in self.children:
+            all = all + child.all_asteroids()
+        return all
 
 
 #
@@ -177,7 +199,7 @@ player = Player()
 
 # A pen to write stuff to the screen
 pen = turtle.Turtle(visible=False)
-pen.color("dark slate blue")
+pen.color("white")
 pen.penup()
 pen.goto(-HALF_WIDTH + 20, HALF_HEIGHT - 30)
 pen.write("SCORE: ", font=SCORE_FONT)
@@ -185,12 +207,12 @@ pen.goto(-HALF_WIDTH + 20, HALF_HEIGHT - 60)
 pen.write("HEALTH: ", font=SCORE_FONT)
 
 score_pen = turtle.Turtle(visible=False)
-score_pen.color("violet")
+score_pen.color("white")
 score_pen.penup()
 score_pen.goto(-HALF_WIDTH + 90, HALF_HEIGHT - 30)
 
 health_pen = turtle.Turtle(visible=False)
-health_pen.color("violet")
+health_pen.color("white")
 health_pen.penup()
 health_pen.goto(-HALF_WIDTH + 90, HALF_HEIGHT - 60)
 
@@ -201,8 +223,12 @@ for i in range(MAX_BULLETS):
 
 # Create asteroids
 asteroids = []
+all_asteroids = []
 for i in range(MAX_ASTEROIDS):
-    asteroids.append(Asteroid())
+    asteroid = Asteroid()
+    asteroids.append(asteroid)
+    all_asteroids.append(asteroid)
+    all_asteroids.extend(asteroid.all_asteroids())
 
 
 #
@@ -274,7 +300,7 @@ def move_if_out_of_bounds(t: turtle.Turtle):
 
 def check_collision(with_turtle):
     # Check for collisions between the player and asteroids
-    for asteroid in asteroids:
+    for asteroid in all_asteroids:
         if asteroid.isvisible() and abs(with_turtle.distance(asteroid)) < asteroid.radius:
             return asteroid
     return None
@@ -333,16 +359,16 @@ def move_bullets():
 
 def move_asteroids():
     for asteroid in asteroids:
-        if asteroid.isvisible():
-            asteroid.forward(asteroid.speed)
-            move_if_out_of_bounds(asteroid) # let the kids figure this one out for a while
-            # also this one:
-            if abs(player.distance(asteroid)) < asteroid.radius:
-                player.hit()
-        else:
+        asteroid.move()
+        if not asteroid.isvisible():
             asteroid.respawn_in -= 1
             if asteroid.respawn_in == 0:
                 asteroid.reset()
+
+    for asteroid in all_asteroids:
+        if asteroid.isvisible():
+            if abs(player.distance(asteroid)) < asteroid.radius:
+                player.hit()
 
 
 def draw_score():

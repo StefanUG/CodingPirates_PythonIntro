@@ -1,10 +1,10 @@
 import turtle
 import random
 import time
-import math
 
 """
-Fancy colors
+What about a turtle player that eats bees
+WIP / some bees need to be angry
 """
 
 #
@@ -13,21 +13,17 @@ Fancy colors
 
 SCREEN_WIDTH = 1200
 SCREEN_HEIGHT = 800
-BG_COLOR = "light sky blue"
+BG_COLOR = "black"
 
 GAME_TICK = 20  # milliseconds, lower means faster game
 ROTATE_SPEED = 5  # turn 5 degrees each tick
-PLAYER_MAX_SPEED = 10  # Pixels to move player each tick
-PLAYER_THRUST = 0.1  # increase in speed per tick
+PLAYER_SPEED = 5  # Pixels to move player each tick
 PLAYER_START_HEALTH = 3
 PLAYER_GRACE_PERIOD = 3 # seconds
-BULLET_SPEED = PLAYER_MAX_SPEED * 2  # Double of player speed
-BULLET_LIFETIME = 75  # game ticks
-MAX_BULLETS = 10
 RELOAD_TIME = 5  # ticks between reload
 MAX_ASTEROIDS = 10
-ASTEROID_SPEED_MIN = 1
-ASTEROID_SPEED_MAX = 5
+ASTEROID_SPEED_MIN = 3
+ASTEROID_SPEED_MAX = 7
 ASTEROID_RESPAWN_AFTER = 150  # respawn after number of game ticks
 
 FONT_FAMILY = "Courier New"
@@ -36,10 +32,11 @@ SCORE_FONT = (FONT_FAMILY, 16, "normal")
 HALF_WIDTH = int(SCREEN_WIDTH / 2)
 HALF_HEIGHT = int(SCREEN_HEIGHT / 2)
 
-SPACESHIP_SHAPE = ( (7,-20), (0,5), (-7,-20) )
-SPACESHIP_THRUST_SHAPE = turtle.Shape('compound')
-SPACESHIP_THRUST_SHAPE.addcomponent(SPACESHIP_SHAPE, "firebrick", 'cadet blue')
-SPACESHIP_THRUST_SHAPE.addcomponent(( (7,-20), (0,-30), (-7,-20) ), "red", 'red')
+BEE_SHAPE = ((0, -22), (-4, -20), (-7, -13), (7, -13), (-7, -13), (-7.6, -5.6), (7.6, -5.6), (-7.6, -5.6), (-2.6, 7.4),
+             (-13.1, -10.5), (-18, -13), (-23, -11), (-25, -6), (-23, -1), (-2.6, 7.5), (-7, 9), (-6, 15), (-4, 17),
+             (-7, 20), (-11, 22), (-7, 20), (-4, 17), (0, 18), (4, 17), (7, 20), (11, 22), (7, 20), (4, 17), (6, 15),
+             (7, 9), (2.6, 7.5), (23, -1), (25, -6), (23, -11), (18, -13), (13.1, -10.5), (2.6, 7.4), (7.6, -5.6),
+             (7, -13), (4, -20))
 
 
 #
@@ -47,60 +44,20 @@ SPACESHIP_THRUST_SHAPE.addcomponent(( (7,-20), (0,-30), (-7,-20) ), "red", 'red'
 #
 
 
-class Bullet(turtle.Turtle):
-
-    def __init__(self):
-        super().__init__()
-        self.shape("square")
-        self.color("indigo")
-        self.shapesize(stretch_wid=0.2, stretch_len=0.2)
-        self.penup()
-        self.hideturtle()
-        self.active = False
-        self.ttl = BULLET_LIFETIME
-
-    def fire(self, start):
-        self.active = True
-        self.ttl = BULLET_LIFETIME
-        self.setposition(start.xcor(), start.ycor())  # Move the bullet to the player
-        self.setheading(start.heading())  # set the same heading as the player
-        self.showturtle()  # show the bullet
-
-    def move(self):
-        self.forward(BULLET_SPEED)
-        move_if_out_of_bounds(self)
-
-        self.ttl -= 1
-        if self.ttl < 0:
-            self.hideturtle()
-            self.active = False
-
-
 class Player(turtle.Turtle):
 
     def __init__(self):
         super().__init__()
-        self.shape("spaceship")
-        self.color("cadet blue", "firebrick")
-        self.penup()  # to not draw lines
+        self.shape("turtle")
+        self.color("white", BG_COLOR)
+        self.shapesize(2, 2)
+        self.penup()
 
         self.fire_cooldown = 0
         self.alive = True
         self.score = 0
         self.health = PLAYER_START_HEALTH
         self.last_hit = 0.0
-
-        self.speedx = 0
-        self.speedy = 0
-
-    def shoot(self, inactive_bullet):
-        if self.fire_cooldown == 0:
-            inactive_bullet.fire(player)
-            self.fire_cooldown = RELOAD_TIME
-
-    def cooldown(self):
-        if self.fire_cooldown > 0:
-            self.fire_cooldown -= 1
 
     def is_invincible(self):
         # a chance to talk about return values
@@ -115,29 +72,17 @@ class Player(turtle.Turtle):
         if self.health == 0:
             self.alive = False
 
-    def thrust(self):
-        track = math.radians(self.heading())
-        self.speedx += PLAYER_THRUST * math.cos(track)
-        self.speedy += PLAYER_THRUST * math.sin(track)
-        speed = (self.speedx ** 2 + self.speedy ** 2) ** 0.5
-        if speed > PLAYER_MAX_SPEED:
-            self.speedx = (self.speedx * PLAYER_MAX_SPEED) / speed
-            self.speedy = (self.speedy * PLAYER_MAX_SPEED) / speed
-
-    def move(self):
-        x, y = self.pos()
-        x += self.speedx
-        y += self.speedy
-        self.goto(x, y)
+    def eat(self, asteroid):
+        asteroid.hit()
+        self.score += 1
 
 
 class Asteroid(turtle.Turtle):
 
     def __init__(self):
         super().__init__()
-        self.shape("circle")
-        self.shapesize(3, 3)
-        self.color("gray", "deep pink")
+        self.shape("bee")
+        self.color("white", BG_COLOR)
         self.penup()
         x = random.randint(-HALF_WIDTH, HALF_WIDTH)
         y = random.randint(-HALF_HEIGHT, HALF_HEIGHT)
@@ -158,6 +103,8 @@ class Asteroid(turtle.Turtle):
         self.respawn_in = ASTEROID_RESPAWN_AFTER
 
 
+
+
 #
 #  GAME SETUP
 #
@@ -168,8 +115,7 @@ screen.setup(SCREEN_WIDTH, SCREEN_HEIGHT) # width and height
 screen.bgcolor(BG_COLOR) # background color
 screen.tracer(0) # disable the built in movement animation of turtle
 
-screen.register_shape("spaceship", SPACESHIP_SHAPE)
-screen.register_shape("spaceship_thrust", SPACESHIP_THRUST_SHAPE)
+screen.register_shape("bee", BEE_SHAPE)
 
 
 # Make a turtle for the player
@@ -177,7 +123,7 @@ player = Player()
 
 # A pen to write stuff to the screen
 pen = turtle.Turtle(visible=False)
-pen.color("dark slate blue")
+pen.color("white")
 pen.penup()
 pen.goto(-HALF_WIDTH + 20, HALF_HEIGHT - 30)
 pen.write("SCORE: ", font=SCORE_FONT)
@@ -185,19 +131,14 @@ pen.goto(-HALF_WIDTH + 20, HALF_HEIGHT - 60)
 pen.write("HEALTH: ", font=SCORE_FONT)
 
 score_pen = turtle.Turtle(visible=False)
-score_pen.color("violet")
+score_pen.color("white")
 score_pen.penup()
 score_pen.goto(-HALF_WIDTH + 90, HALF_HEIGHT - 30)
 
 health_pen = turtle.Turtle(visible=False)
-health_pen.color("violet")
+health_pen.color("white")
 health_pen.penup()
 health_pen.goto(-HALF_WIDTH + 90, HALF_HEIGHT - 60)
-
-# Create bullets
-bullets = []
-for i in range(MAX_BULLETS):
-    bullets.append(Bullet())
 
 # Create asteroids
 asteroids = []
@@ -212,8 +153,7 @@ for i in range(MAX_ASTEROIDS):
 keys_pressed = {
     "Left": False,
     "Right": False,
-    "Up": False,
-    "space": False
+    "Up": False
 }
 
 # Make the spaceship move
@@ -235,22 +175,14 @@ def press_forward():
 def release_forward():
     keys_pressed["Up"] = False
 
-def press_fire():
-    keys_pressed["space"] = True
-
-def release_fire():
-    keys_pressed["space"] = False
-
 
 screen.listen()
 screen.onkeypress(press_left, "Left")
 screen.onkeypress(press_right, "Right")
 screen.onkeypress(press_forward, "Up")
-screen.onkeypress(press_fire, "space")
 screen.onkeyrelease(release_left, "Left")
 screen.onkeyrelease(release_right, "Right")
 screen.onkeyrelease(release_forward, "Up")
-screen.onkeyrelease(release_fire, "space")
 
 #
 #  BEHAVIOURS
@@ -258,7 +190,7 @@ screen.onkeyrelease(release_fire, "space")
 
 
 def move_if_out_of_bounds(t: turtle.Turtle):
-    # Border checking for bullet
+    # Border checking for turtle
     x = t.xcor()
     y = t.ycor()
     # abs turns any number to a positive number
@@ -291,11 +223,6 @@ def animate_spaceship():
     else:
         player.showturtle()
 
-    if keys_pressed["Up"]:
-        player.shape("spaceship_thrust")
-    else:
-        player.shape("spaceship")
-
 
 def move_spaceship():
     if keys_pressed["Left"]:
@@ -303,32 +230,13 @@ def move_spaceship():
     if keys_pressed["Right"]:
         player.right(ROTATE_SPEED)
     if keys_pressed["Up"]:
-        player.thrust()
-
-    player.move()
-    move_if_out_of_bounds(player)
-    if check_collision(player):
-        player.hit()
-
-
-def move_bullets():
-    player.cooldown()
-    inactive_bullet = None
-    for bullet in bullets:
-        if bullet.active:
-            bullet.move()
-            hit_asteroid = check_collision(bullet)
-            if hit_asteroid:
-                hit_asteroid.hit()
-                bullet.hideturtle()
-                bullet.active = False
-                player.score += 1
-                draw_score()
-        else:
-            inactive_bullet = bullet
-
-    if keys_pressed["space"] and inactive_bullet:
-        player.shoot(inactive_bullet)
+        player.forward(PLAYER_SPEED)
+        move_if_out_of_bounds(player)
+        hit_asteroid = check_collision(player)
+        if hit_asteroid:
+            # player.hit()
+            player.eat(hit_asteroid)
+            draw_score()
 
 
 def move_asteroids():
@@ -338,7 +246,9 @@ def move_asteroids():
             move_if_out_of_bounds(asteroid) # let the kids figure this one out for a while
             # also this one:
             if abs(player.distance(asteroid)) < asteroid.radius:
-                player.hit()
+                # player.hit()
+                player.eat(asteroid)
+                draw_score()
         else:
             asteroid.respawn_in -= 1
             if asteroid.respawn_in == 0:
@@ -362,7 +272,6 @@ def draw_health():
 def update():
     move_spaceship()
     animate_spaceship()
-    move_bullets()
     move_asteroids()
 
     screen.update()

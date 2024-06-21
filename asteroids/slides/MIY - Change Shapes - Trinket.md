@@ -85,3 +85,28 @@ screen.register_shape("asteroid", ASTEROID_SHAPE)
             asteroid.tilt(asteroid.speed)
 
 ```
+
+---
+
+# Skildpadde som skyder bier ?
+
+Du kan også lave dit spil om til at din spiller er en skildpadde med `turtle` formen, og lave asteroiderne om til bier med denne `bee` form:
+
+```python
+
+# CONSTANTS
+BEE_SHAPE = ((0, -22), (-4, -20), (-7, -13), (7, -13), (-7, -13), (-7.6, -5.6), (7.6, -5.6), (-7.6, -5.6), (-2.6, 7.4),
+             (-13.1, -10.5), (-18, -13), (-23, -11), (-25, -6), (-23, -1), (-2.6, 7.5), (-7, 9), (-6, 15), (-4, 17),
+             (-7, 20), (-11, 22), (-7, 20), (-4, 17), (0, 18), (4, 17), (7, 20), (11, 22), (7, 20), (4, 17), (6, 15),
+             (7, 9), (2.6, 7.5), (23, -1), (25, -6), (23, -11), (18, -13), (13.1, -10.5), (2.6, 7.4), (7.6, -5.6),
+             (7, -13), (4, -20))
+
+# GAME SETUP
+
+screen.register_shape("bee", BEE_SHAPE)
+
+# Asteroid.__init__
+
+        self.shape("bee")
+        self.shapesize(1, 1)
+

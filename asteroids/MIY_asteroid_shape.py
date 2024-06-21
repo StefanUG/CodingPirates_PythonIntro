@@ -4,7 +4,7 @@ import time
 import math
 
 """
-Add thrust animation when pressing up
+Asteroid shapes
 """
 
 #
