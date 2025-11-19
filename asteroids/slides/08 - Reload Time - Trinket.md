@@ -20,7 +20,7 @@ Hvordan holder vi styr på hvornår vi sidst har skudt?
 * `class Player(turtle.Turtle):`
 * Og så skal den kunne:
 * Lave en ny af sig selv: `__init__(self)`
-* Skyde en kugle: `shootshoot(self, inactive_bullet)`
+* Skyde en kugle: `shoot(self, inactive_bullet)`
 * Køle ned efter den har skudt: `cooldown(self)`
 
 ---
@@ -94,7 +94,7 @@ Vi går ud fra der allerede er fundet en inaktiv kugle (`inactive_bullet`)
 Når spilleren skyder, skal vi
 
 * Tjekke om man er klar (`if self.fire_cooldown == 0:`)
-    * Skyde kuglen: `inactive_bullet.fire(player)`
+    * Skyde kuglen: `inactive_bullet.fire(self)`
     * Sætte cooldown: `self.fire_cooldown = RELOAD_TIME`
 
 
@@ -103,7 +103,7 @@ Det samlede kode:
 ```python
     def shoot(self, inactive_bullet):
         if self.fire_cooldown == 0:
-            inactive_bullet.fire(player)
+            inactive_bullet.fire(self)
             self.fire_cooldown = RELOAD_TIME
 ```
 

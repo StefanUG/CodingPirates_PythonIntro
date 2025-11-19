@@ -58,6 +58,9 @@ Make it yours!
 
 Følg-selv med materialet for lesson 2 var lidt for svært. Bør rettes til, så det bliver lidt lettere.
 
+Skip move player og gå direkte til move better for at få mere tid til mere spændende ting.
+
+
 "indsæt efter en funktion" instruktionerne sætter børnene bare ind efter et kald til en funktion. Ikke efter definitionen på den. 
 Gennemgå på et passende tidspunkt hvad der menes med sådan en sætning.
 

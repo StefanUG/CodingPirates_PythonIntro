@@ -72,7 +72,7 @@ class Player(turtle.Turtle):
 
     def shoot(self, inactive_bullet):
         if self.fire_cooldown == 0:
-            inactive_bullet.fire(player)
+            inactive_bullet.fire(self)
             self.fire_cooldown = RELOAD_TIME
 
     def cooldown(self):

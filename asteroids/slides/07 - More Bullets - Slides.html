@@ -107,7 +107,7 @@ bullets = []
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">move_bullets</span>():
     <span class="hljs-comment"># SNIP</span>
     <span class="hljs-keyword">if</span> keys_pressed[<span class="hljs-string">&quot;space&quot;</span>] <span class="hljs-keyword">and</span> inactive_bullet:
-        inactive_bullet.fire(player)
+        inactive_bullet.fire(self)
 </code></pre>
 <ul>
 <li data-marpit-fragment="1">Grunden til vi bare kan skrive <code>and inactive_bullet</code> er at <code>None</code> svarer til <code>False</code>, og en anden værdi som <code>True</code></li>
